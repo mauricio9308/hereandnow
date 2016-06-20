@@ -1,0 +1,26 @@
+{
+  "name": "alertSystem",
+  "authors": [
+    "Rob Ivan Daniil Shevelev"
+  ],
+  "description": "Application for the Cancun Hackathon",
+  "main": "index.html",
+  "keywords": [
+    "angular",
+    "web",
+    "progressive",
+    "mobile",
+    "connected",
+    "cities"
+  ],
+  "license": "MIT",
+  "homepage": "",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
