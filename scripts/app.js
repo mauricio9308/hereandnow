@@ -1,4 +1,3 @@
-
 (function() {
   'use strict';
 
@@ -28,6 +27,29 @@
       ]
     }
   };
+
+  //Declaration of the application module
+  var angularApp = angular
+      .module('alertSystem', ['ngMaterial']);
+
+  // Setting application configuration
+  angular
+      .module('alertSystem')
+      .config(applicationConfigFunction);
+
+  //Setting the dependencies for the configuration function
+  applicationConfigFunction.$inject = ['$locationProvider', '$mdThemingProvider'];
+
+  /**
+   * Function in charge of the configuration of the modules of the web app
+   * */
+  function applicationConfigFunction($locationProvider, $mdThemingProvider) {
+    // Setting html 5 location routing
+    $locationProvider.html5Mode(true).hashPrefix('!');
+
+    /* setting the angular material custom theme */
+    $mdThemingProvider.theme('default').primaryPalette('red');
+  }
 
   var app = {
     hasRequestPending: false,
