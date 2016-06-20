@@ -55,6 +55,21 @@
     </div>
 </div>
 
+<!-- Dialog for the login process -->
+<div class="login-container login-container--visible" ng-controller="LoginDialogController as loginController">
+    <div class="dialog">
+        <div class="dialog-title">¡Bienvenido a Alert System!</div>
+        <div class="dialog-body" layout="column">
+            <p>Inicia sesión con:</p>
+
+            <!-- Button for the Google Plus login access -->
+            <md-button class="md-raised md-primary" flex="100">Google +</md-button>
+
+            <p>Al iniciar aceptas los <a href="index.html">términos y condiciones</a></p>
+        </div>
+    </div>
+</div>
+
 <!-- Loader element -->
 <div class="loader">
     <svg viewBox="0 0 32 32" width="32" height="32">
@@ -73,6 +88,7 @@
 <script src="scripts/app.js"></script>
 <script src="scripts/controllers/main.controller.js"></script>
 <script src="scripts/controllers/add.report.dialog.controller.js"></script>
+<script src="scripts/controllers/login.dialog.controller.js"></script>
 
 <!-- Setting the Firebase connection -->
 <script src="https://www.gstatic.com/firebasejs/live/3.0/firebase.js"></script>
