@@ -3,9 +3,11 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- TODO Change this to the hosted app link -->
     <link rel="canonical" href="https://weather-pwa-sample.firebaseapp.com/final/">
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Weather PWA</title>
+    <title>Alert System</title>
     <link rel="stylesheet" type="text/css" href="styles/inline.css">
 
     <!-- Definition of the libraries css -->
@@ -16,7 +18,7 @@
     <!-- Add to home screen for Safari on iOS -->
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
-    <meta name="apple-mobile-web-app-title" content="Weather PWA">
+    <meta name="apple-mobile-web-app-title" content="Alert System">
     <link rel="apple-touch-icon" href="images/icons/icon-152x152.png">
     <base href="/" />
 
@@ -26,7 +28,7 @@
 <body ng-controller="MainController as vm">
 
 <header class="header">
-    <h1 class="header__title">Weather PWA</h1>
+    <h1 class="header__title">Alert System</h1>
     <button id="butRefresh" class="headerButton" ng-click="vm.refresh()" aria-label="Refresh"></button>
     <button id="butAdd" class="headerButton" ng-click="vm.addReport()" aria-label="Add"></button>
 </header>
