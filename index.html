@@ -120,8 +120,16 @@
     </md-button>
 </div>
 
-<div class="user-bar" style="bottom: 0" ng-show="vm.currentUser">
-    dede
+<div class="user-bar" style="bottom: 0; padding: 0; height: 68px;" ng-show="vm.currentUser">
+    <md-list style="margin: 0px; padding: 0px;">
+        <md-list-item class="md-2-line">
+            <img ng-src="{{ vm.currentUser.photoURL }}" class="md-avatar" alt="User photo" />
+            <div class="md-list-item-text">
+                <h3 style="color: white;">{{ vm.currentUser.displayName }}</h3>
+                <p style="color: white;">{{ vm.currentUser.email }}</p>
+            </div>
+        </md-list-item>
+    </md-list>
 </div>
 
 <!-- Setting the Firebase connection -->
