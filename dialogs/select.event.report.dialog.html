@@ -9,7 +9,7 @@
     <div ng-hide="vm.isLoading">
         <md-toolbar ng-style="{ 'background-color': vm.getReportLevelColor() }">
             <div class="md-toolbar-tools">
-                <h2>Select the Event</h2>
+                <h2 >Event</h2>
                 <span flex></span>
                 <md-button class="md-icon-button" ng-click="vm.cancel()">
                     <md-icon md-svg-src="images/close_white.svg" aria-label="Close dialog"></md-icon>
@@ -19,7 +19,7 @@
         <md-dialog-content>
             <div class="md-dialog-content">
                 <!-- Form for creating the given report  -->
-                <h2>Select the event:</h2>
+                <h2 style="margin-top: 0px;">Choose the one that best describes the event:</h2>
                 <!-- Options for the danger level -->
                 <md-radio-group ng-model="vm.danger_selection" ng-show="vm.level === 4">
                     <md-radio-button value="Robbery">Robbery</md-radio-button>
@@ -34,7 +34,6 @@
                     <md-radio-button value="Power Outgage">Power Outgage</md-radio-button>
                     <md-radio-button value="Flood">Flood</md-radio-button>
                     <md-radio-button value="Lost a Relative">Lost a Relative</md-radio-button>
-                    <md-radio-button value="Got Lost">Got Lost</md-radio-button>
                     <md-radio-button value="Other">Other</md-radio-button>
                 </md-radio-group>
             </div>
