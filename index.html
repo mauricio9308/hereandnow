@@ -65,6 +65,7 @@
             <!-- Button for the Google Plus login access -->
             <md-button class="md-raised md-primary" flex="100" ng-click="loginController.loginWithGooglePlus()">Google +</md-button>
 
+            <p class="login-error-message" ng-show="loginController.errorMessage">{{ loginController.errorMessage }}</p>
             <p>Al iniciar aceptas los <a href="index.html">términos y condiciones</a></p>
         </div>
     </div>
@@ -94,6 +95,7 @@
 
 <!-- JS dependencies  -->
 <script src="bower_components/angular/angular.min.js"></script>
+<script src="bower_components/ngstorage/ngStorage.min.js"></script>
 <script src="bower_components/angular-animate/angular-animate.min.js"></script>
 <script src="bower_components/angular-aria/angular-aria.min.js"></script>
 <script src="bower_components/angular-messages/angular-messages.min.js"></script>
