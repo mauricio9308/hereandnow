@@ -29,11 +29,11 @@
             //We trigger the logout process
             GoogleLoginService.logout().then(function(){
                 ToastService.showMessage('Success log in out C:. See you soon!')
-            }).catch(function(){
-                ToastService.showMessage('There was an error while log in out :C')
 
                 /* displaying the login dialog */
                 toggleLoginDialog( true );
+            }).catch(function(){
+                ToastService.showMessage('There was an error while log in out :C')
             });
         };
 
