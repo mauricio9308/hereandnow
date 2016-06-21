@@ -417,6 +417,7 @@ p.login-error-message {
     -webkit-transform: translateY(-50%);
     -moz-transform: translateY(-50%);
     color: white;
+    text-align: center;
 }
 
 .main-login-title {
@@ -449,36 +450,52 @@ p.login-error-message {
     color: white;
 }
 
-.center-loading-container{
-    position: relative;
-    transform: translateY(100%);
-    text-align: center;
+@media (max-width: 600px) {
+    .center-loading-container {
+        position: relative;
+        transform: translateY(100%);
+        text-align: center;
+    }
+
+    .center-loading-container md-progress-circular {
+        margin: 0 auto;
+        text-align: center;
+    }
 }
 
-.center-loading-container md-progress-circular{
+.center-loading-container {
+    position: relative;
+    text-align: center;
+    margin: 70px;
+}
+
+.center-loading-container md-progress-circular {
     margin: 0 auto;
     text-align: center;
 }
+
 .image-wrap {
     max-height: 450px;
     overflow: hidden;
-    max-width: 800px;       
-    -webkit-transition: max-width .5s ease-out;  /* Saf3.2+, Chrome */
-    -moz-transition: max-width .5s ease-out;  /* FF4+ */
-    -ms-transition: max-width .5s ease-out;  /* IE10? */
-    -o-transition: max-width .5s ease-out;  /* Opera 10.5+ */
+    max-width: 800px;
+    -webkit-transition: max-width .5s ease-out; /* Saf3.2+, Chrome */
+    -moz-transition: max-width .5s ease-out; /* FF4+ */
+    -ms-transition: max-width .5s ease-out; /* IE10? */
+    -o-transition: max-width .5s ease-out; /* Opera 10.5+ */
     transition: max-width .5s ease-out;
 }
- 
-    .image-wrap img {
-        width: 100%;
-        -webkit-transition: margin-top .5s ease-out;  /* Saf3.2+, Chrome */
-        -moz-transition: margin-top .5s ease-out;  /* FF4+ */
-        -ms-transition: margin-top .5s ease-out;  /* IE10? */
-        -o-transition: margin-top .5s ease-out;  /* Opera 10.5+ */
-        transition: margin-top .5s ease-out;
-    }
-     
+
+.image-wrap img {
+    width: 100%;
+    -webkit-transition: margin-top .5s ease-out; /* Saf3.2+, Chrome */
+    -moz-transition: margin-top .5s ease-out; /* FF4+ */
+    -ms-transition: margin-top .5s ease-out; /* IE10? */
+    -o-transition: margin-top .5s ease-out; /* Opera 10.5+ */
+    transition: margin-top .5s ease-out;
+}
+
 @media only screen and (min-width: 1160px) {
-    .image-wrap { max-width: 1000px; }
+    .image-wrap {
+        max-width: 1000px;
+    }
 }
