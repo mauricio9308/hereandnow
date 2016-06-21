@@ -15,7 +15,7 @@
         var vm = this;
 
         //Flag for the report dialog open
-        vm.isReportDialogOpen = false;
+        vm.isReportDialogOpen = ( !$localStorage.user );
 
         /* callback functions for the main toolbar actions */
         vm.addReport = function(){
@@ -67,8 +67,13 @@
             //We update the current user reference
             vm.currentUser = $localStorage.user;
 
-            var isUserAuthenticated = ( vm.currentUser === undefined );
+            console.log('updating the main reference ', vm.currentUser);
+
+            var isUserAuthenticated = ( vm.currentUser !== undefined );
             toggleLoginDialog( !isUserAuthenticated  /* show */);
+
+            //Updating the angular references
+            $scope.$apply();
         });
 
         /**

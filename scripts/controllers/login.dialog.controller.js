@@ -7,12 +7,12 @@
     angular.module('alertSystem').controller('LoginDialogController', LoginDialogController);
 
     //Injection of the dependencies
-    LoginDialogController.$inject = ['GoogleLoginService'];
+    LoginDialogController.$inject = ['GoogleLoginService', '$rootScope'];
 
     /**
      * Controller dialog for the login sequence
      * */
-    function LoginDialogController(GoogleLoginService){
+    function LoginDialogController(GoogleLoginService, $rootScope){
         var vm = this;
 
         //Error message if any
@@ -31,7 +31,10 @@
                 /* success authenticating the user */
 
                 //Removing the login dialog
-                toggleLoginDialog( false /* show */)
+                toggleLoginDialog( false /* show */);
+
+                //Removing the login dialog
+                $rootScope.$emit('toggleReportDialog', false);
             }).catch(function( rejectReason ){
                 /* we just set the error message */
                 vm.errorMessage = rejectReason;
@@ -43,7 +46,10 @@
          * */
         vm.continueWithoutSession = function(){
             //Removing the login dialog
-            toggleLoginDialog( false /* show */)
+            toggleLoginDialog( false /* show */);
+
+            //Emit the message of the login dialog
+            $rootScope.$emit('toggleReportDialog', false);
         };
 
         /**

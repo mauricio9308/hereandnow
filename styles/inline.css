@@ -42,7 +42,8 @@ body {
           align-content: stretch;
   background: #ececec; }
 
-.header {
+.header,
+.user-bar{
   width: 100%;
   height: 56px;
   color: #FFF;
@@ -177,7 +178,7 @@ body {
 .login-container--visible{
   opacity: 1;
   pointer-events: auto;
-  z-index: 1; /* Setting the dialog as an overlay */
+  z-index: 999999; /* Setting the dialog as an overlay */
 }
 
 p.login-error-message{
@@ -437,6 +438,12 @@ p.login-error-message{
 .main-add-fab{
     position: fixed !important;
     bottom: 16px !important;
+    right: 16px !important;
+}
+
+.main-add-fab-log-in{
+    position: fixed !important;
+    bottom: 65px !important;
     right: 16px !important;
 }
 
