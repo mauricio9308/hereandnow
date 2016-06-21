@@ -26,6 +26,8 @@
   "dependencies": {
     "ngstorage": "0.3.10",
     "angular": "^1.5.7",
-    "angular-material": "^1.0.9"
+    "angular-material": "^1.0.9",
+    "angularfire": "^2.0.1",
+    "firebase": "^3.0.5"
   }
 }

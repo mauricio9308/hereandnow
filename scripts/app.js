@@ -1,40 +1,14 @@
 (function() {
   'use strict';
 
-  var initialWeatherForecast = {
-    key: 'newyork',
-    label: 'New York, NY',
-    currently: {
-      time: 1453489481,
-      summary: 'Clear',
-      icon: 'partly-cloudy-day',
-      temperature: 52.74,
-      apparentTemperature: 74.34,
-      precipProbability: 0.20,
-      humidity: 0.77,
-      windBearing: 125,
-      windSpeed: 1.52
-    },
-    daily: {
-      data: [
-        {icon: 'clear-day', temperatureMax: 55, temperatureMin: 34},
-        {icon: 'rain', temperatureMax: 55, temperatureMin: 34},
-        {icon: 'snow', temperatureMax: 55, temperatureMin: 34},
-        {icon: 'sleet', temperatureMax: 55, temperatureMin: 34},
-        {icon: 'fog', temperatureMax: 55, temperatureMin: 34},
-        {icon: 'wind', temperatureMax: 55, temperatureMin: 34},
-        {icon: 'partly-cloudy-day', temperatureMax: 55, temperatureMin: 34}
-      ]
-    }
-  };
-
   //Declaration of the application module
-  var angularApp = angular.module('alertSystem', ['ngMaterial', 'ngStorage']);
+  var angularApp = angular.module('alertSystem', ['ngMaterial', 'ngStorage', 'firebase']);
 
   // Setting application configuration
   angular
       .module('alertSystem')
-      .config(applicationConfigFunction);
+      .config(applicationConfigFunction)
+      .run(applicationRunFunction);
 
   //Setting the dependencies for the configuration function
   applicationConfigFunction.$inject = ['$locationProvider', '$mdThemingProvider'];
@@ -50,10 +24,23 @@
     $mdThemingProvider.theme('default').primaryPalette('red');
   }
 
+  
+  applicationRunFunction.$inject = ['NotificationsService'];
 
-  if('serviceWorker' in navigator) {
-    navigator.serviceWorker
-             .register('./service-worker.js')
-             .then(function() { console.log('Service Worker Registered'); });
+  function applicationRunFunction(NotificationsService) {
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('service-worker.js').then(function() {
+        return navigator.serviceWorker.ready;
+      }).then(function(reg) {
+        console.log('Service Worker is ready :)', reg);
+        reg.pushManager.subscribe({userVisibleOnly: true}).then(function(sub) {
+          var subscriberId = sub.endpoint.replace('https://android.googleapis.com/gcm/send/', '');
+          NotificationsService.setSubscriberId(subscriberId);
+        });
+      }).catch(function(error) {
+        console.log('Service Worker error :(', error);
+      });
+    }
   }
+
 })();
