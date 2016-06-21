@@ -1,6 +1,7 @@
 'use strict';
 
 console.log('Started', self);
+var lastReport;
 
 self.addEventListener('install', function (event) {
     self.skipWaiting();
@@ -21,9 +22,9 @@ self.addEventListener('push', function (event) {
                 return response.json();
             })
             .then(function (data) {
-                var report = data[Object.keys(data)[0]];
+                lastReport = data[Object.keys(data)[0]];
                 return self.registration.showNotification('Here and Now', {
-                    'body': report.description,
+                    'body': lastReport.description,
                     'icon': 'images/icon.png'
                 })
             })
@@ -36,7 +37,7 @@ self.addEventListener('notificationclick', function (event) {
     // Android doesn't close the notification when you click it
     // See http://crbug.com/463146
     event.notification.close();
-    var url = 'https://youtu.be/gYMkEMCHtJ4';
+    var url = 'https://alertsystem-9f7a1.firebaseapp.com/';
     // Check if there's already a tab open with this URL.
     // If yes: focus on the tab.
     // If no: open a tab with the URL.

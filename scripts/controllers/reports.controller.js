@@ -59,6 +59,6 @@
                 fullscreen: false
             });
         };
-    }
 
-}(firebase));
+    }
+}(firebase))
