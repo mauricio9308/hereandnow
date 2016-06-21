@@ -51,7 +51,9 @@
                     <strong>Image</strong>
                     <br>
                     <a href="{{ vm.report.photoURL }}" target="_blank">
-                        <img src="{{ vm.report.photoURL }}" style="width: 250px; height: 150px"/>
+                        <div class="image-wrap" id="wrapper">
+                            <img src="{{ vm.report.photoURL }}"/>
+                        </div>
                     </a>
                 </div>
                 <br>
@@ -82,7 +84,10 @@
                 <!-- Location information -->
                 <strong>Location</strong>
                 <br>
-                <img ng-src="{{ vm.getMapUrl() }}" style="margin-top: 20px; width: 100%;height: 250px;">
+
+                <div class="image-wrap" id="wrapper">
+                    <img ng-src="{{ vm.getMapUrl() }}">
+                </div>
             </div>
         </md-dialog-content>
     </div>

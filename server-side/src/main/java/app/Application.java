@@ -64,6 +64,9 @@ public class Application {
                 Report newPost = snapshot.getValue(Report.class);
                 System.out.println("Author: " + newPost.getAuthorDisplayName());
                 System.out.println("Message: " + newPost.getDescription());
+
+                //TODO: Processing messages and pushing notification to users
+
             }
 
             @Override
