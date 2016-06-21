@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Alert System</title>
+    <title>Here and Now</title>
     <link rel="stylesheet" type="text/css" href="styles/inline.css">
 
     <!-- Definition of the libraries css -->
@@ -35,7 +35,7 @@
 <!-- Dialog for the report adding -->
 <div class="dialog-container" ng-controller="AddReportDialogController as dcontroller">
     <div class="dialog">
-        <div class="dialog-title">Crear reporte</div>
+        <div class="dialog-title">Create Report</div>
         <div class="dialog-body" layout="column">
             <div layout="row" class="add-report-button-row">
                 <div md-ink-ripple class="alert-card" ng-click="dcontroller.createReport($event, 4)">
@@ -55,7 +55,7 @@
             </div>
         </div>
         <div class="dialog-buttons">
-            <button id="butAddCancel" class="button" ng-click="dcontroller.cancelReportCreation()">Cancelar</button>
+            <button id="butAddCancel" class="button" ng-click="dcontroller.cancelReportCreation()">Cancel</button>
         </div>
     </div>
 </div>
@@ -63,15 +63,15 @@
 <!-- Dialog for the login process -->
 <div class="login-container login-container--visible" ng-controller="LoginDialogController as loginController">
     <div class="dialog">
-        <div class="dialog-title">¡Bienvenido a Aler!</div>
+        <div class="dialog-title">Welcome to Here and Now!</div>
         <div class="dialog-body" layout="column">
-            <p>Inicia sesión con:</p>
+            <p>Log in with:</p>
 
             <!-- Button for the Google Plus login access -->
             <md-button class="md-raised md-primary" flex="100" ng-click="loginController.loginWithGooglePlus()">Google +</md-button>
 
             <p class="login-error-message" ng-show="loginController.errorMessage">{{ loginController.errorMessage }}</p>
-            <p>Al iniciar aceptas los <a href="index.html">términos y condiciones</a></p>
+            <p>By logging in to Here and Now you accept the <a href="index.html">terms and conditions.</a></p>
         </div>
     </div>
 </div>

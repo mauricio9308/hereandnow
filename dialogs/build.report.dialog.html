@@ -9,37 +9,36 @@
     <div ng-hide="vm.isLoading">
         <md-toolbar>
             <div class="md-toolbar-tools">
-                <h2>Crear reporte</h2>
+                <h2>Create Report</h2>
                 <span flex></span>
                 <md-button class="md-icon-button" ng-click="vm.cancel()">
-                    <md-icon md-svg-src="images/close_white.svg" aria-label="Cerrar diálogo"></md-icon>
+                    <md-icon md-svg-src="images/close_white.svg" aria-label="Close dialog"></md-icon>
                 </md-button>
             </div>
         </md-toolbar>
         <md-dialog-content>
             <div class="md-dialog-content">
-                <h2 style="margin: 0;">Creando un reporte de: {{ getReportLevelName() }}</h2>
+                <h2 style="margin: 0;">Creating a report of the category: {{ getReportLevelName() }}</h2>
 
                 <!-- Form for creating the given report  -->
                 <form novalidate name="vm.reportForm">
                     <!-- Input for the description of the given report -->
                     <md-input-container class="md-block">
-                        <label>Descripción</label>
+                        <label>Description</label>
                         <textarea ng-model="vm.report.description" name="description"
                                   md-maxlength="400" rows="5" style="height : 100px;" md-select-on-focus
                                   required></textarea>
                         <div ng-messages="vm.reportForm.description.$error">
-                            <div ng-message="required">Este campo es requerido.</div>
+                            <div ng-message="required">This field is required.</div>
                         </div>
                     </md-input-container>
 
                     <!-- Input for posting anon -->
                     <md-input-container style="margin: 0;">
-                        <md-switch ng-model="vm.report.isAnonymous">Publicar anonimamente</md-switch>
+                        <md-switch ng-model="vm.report.isAnonymous">Publish anonymously</md-switch>
                     </md-input-container>
 
-                    <p>Recuerda siempre agregar información relevante al suceso (Spam y mensajes basura serán razón de
-                        ban)</p>
+                    <p>Remember always add relevant information about the event (spam and offensive messages are reasons for ban)</p>
                 </form>
             </div>
         </md-dialog-content>
