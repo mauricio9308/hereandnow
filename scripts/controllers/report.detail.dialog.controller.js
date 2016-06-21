@@ -69,8 +69,8 @@
          * Generates the map url for the report
          * */
         vm.getMapUrl = function () {
-            var url = 'https://maps.googleapis.com/maps/api/staticmap?center=' + report.latitude + ','
-                + report.longitude + '&zoom=14&size=350x250&key='
+            var url = 'https://maps.googleapis.com/maps/api/staticmap?center=' + report.location.lat + ','
+                + report.location.lng + '&zoom=14&size=350x250&key='
                 + 'AIzaSyBKJf8isx7I4whd_eMe7LxNFDoXZNMwZrg' + '&markers=color:blue%7Clabel:'+ vm.getReportLevelName().charAt(0) +'%7C' + report.latitude
                 + ','+ report.longitude;
 
