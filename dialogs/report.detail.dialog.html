@@ -41,16 +41,22 @@
                     <strong>Reporter</strong>
                     <br>
                     <div ng-show="vm.report.user">
-
+                        <!-- Representation of a user object -->
+                        <md-list>
+                            <md-list-item class="md-2-line">
+                                <img ng-src="{{ vm.report.user.photoURL }}" class="md-avatar" alt="User photo" />
+                                <div class="md-list-item-text">
+                                    <h3>{{ vm.report.user.displayName }}</h3>
+                                    <p>{{ vm.report.user.email }}</p>
+                                </div>
+                            </md-list-item>
+                        </md-list>
                     </div>
                     <div ng-show="!vm.report.user || vm.report.isAnonymous">
-
+                        <span>{{ vm.report.isAnonymous ? 'Anonymous reporter' :
+                            'Error getting the user info'}}</span>
                     </div>
-
-                    <label>{{ (!vm.report.user || vm.report.isAnonymous)
-                        ? 'Anonymous' : vm.repo  }}</label>
                 </div>
-                <br>
 
                 <!-- Location information -->
                 <img ng-src="{{ vm.getMapUrl() }}" style="margin-top: 20px; width: 100%;height: 150px;">

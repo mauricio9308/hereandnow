@@ -35,7 +35,10 @@
                     }
 
                     /* success getting the user information */
-                    console.log( user );
+                    console.log( user.val() );
+
+                    //Setting the reference for the user information
+                    vm.report.user = user.val();
 
                     vm.isLoading = false;
                 }, function (errorObject) {
