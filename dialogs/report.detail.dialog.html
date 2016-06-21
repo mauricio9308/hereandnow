@@ -31,10 +31,19 @@
                 <br><br>
 
                 <!-- Date information -->
-                <strong>Description</strong>
+                <strong>Date</strong>
                 <br>
                 <label>{{ vm.report.date | date }}</label>
                 <br><br>
+
+                <div ng-hide="!vm.report.photoURL">
+                    <strong>Image</strong>
+                    <br>
+                    <a href="{{ vm.report.photoURL }}" target="_blank">
+                        <img src="{{ vm.report.photoURL }}" style="width: 250px; height: 150px"/>
+                    </a>
+                </div>
+                <br>
 
                 <!-- Information of the user -->
                 <div>
