@@ -5,15 +5,20 @@
 
     angular.module('alertSystem').controller('ReportsController', ReportsController);
 
-    ReportsController.$inject = ['LevelColorsService', '$mdDialog', '$firebaseArray', '$mdMedia'];
+    ReportsController.$inject = ['LevelColorsService', '$mdDialog', '$firebaseArray', '$mdMedia', '$rootScope'];
 
-    function ReportsController(LevelColorsService, $mdDialog, $firebaseArray, $mdMedia) {
+    function ReportsController(LevelColorsService, $mdDialog, $firebaseArray, $mdMedia, $rootScope) {
         var vm = this;
+
 
         function load(){
             //Setting the reference for the reports reference
             var reportsReference = firebase.database().ref().child('reports');
             vm.reports = $firebaseArray(reportsReference);
+
+            //End the loading process
+            $rootScope.$emit('isLoading', false);
+
 
             /* we add the color parsing to each of the objects */
             for( var i = 0, total = vm.reports.length; i < total; i ++ ){
