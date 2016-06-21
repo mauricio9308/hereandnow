@@ -1,5 +1,6 @@
 package app;
 
+import java.net.URL;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -28,9 +29,14 @@ public class Report {
     private String level;
     private Location location;
     private String event;
+    private URL photoURL;
+
+    public URL getPhotoURL() {
+        return photoURL;
+    }
 
     public Report(String authorDisplayName, String authorUid, String date, String description,
-                  String isAnonymous, String level, Location location, String event) {
+                  String isAnonymous, String level, Location location, String event, URL photoURL) {
         this.authorDisplayName = authorDisplayName;
         this.authorUid = authorUid;
         this.date = date;
@@ -39,6 +45,7 @@ public class Report {
         this.level = level;
         this.location = location;
         this.event = event;
+        this.photoURL = photoURL;
 
         parseTheDate();
     }
