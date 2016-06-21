@@ -29,7 +29,7 @@
                 locals: {
                     level: reportKind
                 },
-                clickOutsideToClose: true,
+                clickOutsideToClose: false,
                 fullscreen: false
             });
 

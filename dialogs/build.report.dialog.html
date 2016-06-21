@@ -9,7 +9,7 @@
     <div ng-hide="vm.isLoading">
         <md-toolbar ng-style="{ 'background-color': vm.getReportLevelColor() }">
             <div class="md-toolbar-tools">
-                <h2>Create Report</h2>
+                <h2>Create Report ( {{ vm.getReportLevelName() }} )</h2>
                 <span flex></span>
                 <md-button class="md-icon-button" ng-click="vm.cancel()">
                     <md-icon md-svg-src="images/close_white.svg" aria-label="Close dialog"></md-icon>
@@ -18,8 +18,6 @@
         </md-toolbar>
         <md-dialog-content>
             <div class="md-dialog-content">
-                <h2 style="margin: 0;">Creating a report of the category: {{ vm.getReportLevelName() }}</h2>
-
                 <!-- Form for creating the given report  -->
                 <form novalidate name="vm.reportForm">
                     <!-- Input for the description of the given report -->
