@@ -9,11 +9,26 @@ public class Location {
 
     Location(){}
 
+    public Location(long lat, long lng) {
+        this.lat = lat;
+        this.lng = lng;
+    }
+
     public long getLat() {
         return lat;
     }
 
     public long getLng() {
         return lng;
+    }
+
+    public boolean isClose(Location otherLocation){
+        // TODO
+        return false;
+    }
+
+    public boolean isClose(Location otherLocation, int threashold){
+        // TODO
+        return false;
     }
 }
