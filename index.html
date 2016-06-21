@@ -72,10 +72,30 @@
 </div>
 
 <!-- Loader element -->
-<div class="loader">
+<div class="loader" ng-show="vm.isLoading">
     <svg viewBox="0 0 32 32" width="32" height="32">
         <circle id="spinner" cx="16" cy="16" r="14" fill="none"></circle>
     </svg>
+</div>
+
+<!-- Container for the list of reports -->
+<div ng-controller="ReportsController as reportsController" ng-cloak class="reports-list" style="overflow: auto;">
+
+    <!-- List for the reports in a given area -->
+    <md-grid-list
+            md-cols-xs="2" md-cols-sm="2" md-cols-md="4" md-cols-gt-md="6"
+            md-row-height-gt-md="1:1" md-row-height="1:1"
+            md-gutter="12px" md-gutter-gt-sm="8px" style="height: 90vh; margin-top: 65px">
+
+        <!-- Iteration of the cards for the reports in the application -->
+        <md-grid-tile ng-repeat="report in reportsController.reports"
+                      ng-style="{ 'background-color': report.color}">
+            <md-grid-tile-footer>
+                <h3>{{ report.levelName }} {{ report.level }}</h3>
+            </md-grid-tile-footer>
+        </md-grid-tile>
+    </md-grid-list>
+
 </div>
 
 <!-- Setting the Firebase connection -->
@@ -104,7 +124,9 @@
 <!-- Angular related files -->
 <script src="scripts/app.js"></script>
 <script src="scripts/services/google.login.service.js"></script>
+<script src="scripts/services/level.colors.service.js"></script>
 <script src="scripts/controllers/main.controller.js"></script>
+<script src="scripts/controllers/reports.controller.js"></script>
 <script src="scripts/controllers/add.report.dialog.controller.js"></script>
 <script src="scripts/controllers/login.dialog.controller.js"></script>
 
