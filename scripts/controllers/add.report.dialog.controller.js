@@ -43,13 +43,15 @@
         vm.cancelReportCreation = function () {
             //We just close the dialog
             toggleReportDialog(false  /* show */);
+
+            // Sending the close of the report dialog
+            $scope.$emit('toggleReportDialog', false);
         };
 
         /**
          * Function for open the report dialog
          * */
         function toggleReportDialog(show) {
-            $scope.$emit('toggleReportDialog', show);
 
             var dialogElementClasses = document.querySelector('.dialog-container').classList;
 

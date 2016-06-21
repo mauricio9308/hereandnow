@@ -31,6 +31,9 @@
                 ToastService.showMessage('Success log in out C:. See you soon!')
             }).catch(function(){
                 ToastService.showMessage('There was an error while log in out :C')
+
+                /* displaying the login dialog */
+                toggleLoginDialog( true );
             });
         };
 
@@ -60,6 +63,9 @@
          * Listening to the open or close of the report dialog
          * */
         $scope.$on('toggleReportDialog', function( event, isShowing ){
+            vm.isReportDialogOpen = isShowing;
+        });
+        $rootScope.$on('toggleReportDialog', function( event, isShowing ){
             vm.isReportDialogOpen = isShowing;
         });
 

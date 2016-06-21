@@ -7,7 +7,7 @@
 
     <!-- Container for the form input -->
     <div ng-hide="vm.isLoading">
-        <md-toolbar>
+        <md-toolbar ng-style="{ 'background-color': vm.getReportLevelColor() }">
             <div class="md-toolbar-tools">
                 <h2>Create Report</h2>
                 <span flex></span>
@@ -18,7 +18,7 @@
         </md-toolbar>
         <md-dialog-content>
             <div class="md-dialog-content">
-                <h2 style="margin: 0;">Creating a report of the category: {{ getReportLevelName() }}</h2>
+                <h2 style="margin: 0;">Creating a report of the category: {{ vm.getReportLevelName() }}</h2>
 
                 <!-- Form for creating the given report  -->
                 <form novalidate name="vm.reportForm">

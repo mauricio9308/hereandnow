@@ -8,13 +8,13 @@
 
     /* injecting the report message */
     BuildReportDialogController.$inject = ['ReportsService', 'level', 'LevelColorsService',
-        '$mdDialog', '$localStorage', 'ToastService', '$scope'];
+        '$mdDialog', '$localStorage', 'ToastService', '$rootScope'];
 
     /**
      * Controller in charge of the report creation
      * */
     function BuildReportDialogController( ReportsService, level, LevelColorsService,
-                                          $mdDialog, $localStorage, ToastService, $scope){
+                                          $mdDialog, $localStorage, ToastService, $rootScope){
         var vm = this;
 
         //Loading flag
@@ -75,6 +75,9 @@
                 /* we close the dialog */
                 $mdDialog.cancel();
 
+                //Sending the toggle dialog close message
+                $rootScope.$emit('toggleReportDialog', false);
+
                 //Removing the loading state
                 vm.isLoading = false;
             });
@@ -84,6 +87,9 @@
          * Cancels the report creation process
          * */
         vm.cancel = function(){
+            //Sending the toggle dialog close message
+            $rootScope.$emit('toggleReportDialog', false);
+
             $mdDialog.cancel();
         };
     }

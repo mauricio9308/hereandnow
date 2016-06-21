@@ -28,7 +28,7 @@
 <header class="header">
     <h1 class="header__title">Here and Now</h1>
     <button id="logoutButton" ng-click="vm.logout()"
-            ng-hide="!vm.currentUser" aria-label="Close Session">Log out</button>
+            ng-hide="!vm.currentUser || vm.isReportDialogOpen" aria-label="Close Session">Log out</button>
 </header>
 
 
