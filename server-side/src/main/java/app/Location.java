@@ -55,8 +55,16 @@ public class Location {
         Double y = otherLocation.getLng();
         Point2D otherCoordinate =  new Point2D.Double(x,y);
 
-        Point2D thePoint = getPoint();
-        Double distance = thePoint.distance(otherCoordinate);
+        Double distance = 0D;
+        try {
+            Point2D thePoint = getPoint();
+            distance = thePoint.distance(otherCoordinate);
+        } catch (Exception e) {
+            System.out.println("There was an issue with parsing user's location");
+            e.printStackTrace();
+            return false;
+        }
+
         if(distance < DEFAULT_THREASHOLD){
             System.out.println("Location is close. Distance is: " + distance);
             System.out.println("Location 1: " + lat + ":" + lng);
