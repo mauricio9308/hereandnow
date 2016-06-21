@@ -29,8 +29,8 @@
 
 <header class="header">
     <h1 class="header__title">Alert System</h1>
-    <button id="butRefresh" class="headerButton" ng-click="vm.refresh()" aria-label="Refresh"></button>
-    <button id="butAdd" class="headerButton" ng-click="vm.addReport()" aria-label="Add"></button>
+    <button id="butRefresh" class="headerButton" ng-click="vm.refresh()" ng-hide="!vm.currentUser" aria-label="Refresh"></button>
+    <button id="butAdd" class="headerButton" ng-click="vm.addReport()" ng-hide="!vm.currentUser" aria-label="Add"></button>
 </header>
 
 

@@ -7,11 +7,11 @@
     angular.module('alertSystem').factory('GoogleLoginService', GoogleLoginService);
 
     //Declaration of the factory
-    GoogleLoginService.$inject = ['$q', '$localStorage'];
+    GoogleLoginService.$inject = ['$q', '$localStorage', '$rootScope'];
     /**
      * Service in charge of the Google Login Management
      * */
-    function GoogleLoginService($q, $localStorage){
+    function GoogleLoginService($q, $localStorage, $rootScope){
 
         // Public API
         return {
@@ -40,6 +40,9 @@
                     photoURL : result.photoURL,
                     uid : result.uid
                 };
+
+                /* we transmit the change of the user logged in state */
+                $rootScope.$emit('UserAuthenticationChanged');
 
                 //Success authenticating the user
                 googleLoginDefer.resolve( result );
@@ -71,6 +74,9 @@
 
                 /* we destroy any reference of the user */
                 $localStorage.$reset();
+
+                /* we transmit the change of the user logged in state */
+                $rootScope.$emit('UserAuthenticationChanged');
 
                 logoutDefer.resolve( true );
             }, function(error) {
