@@ -440,8 +440,15 @@ p.login-error-message{
     right: 16px !important;
 }
 
-#logoutButton{
+#logoutButton,
+#loginButton{
     font-weight: bold;
     color: white;
     margin-bottom: 20px;
+}
+
+#report-description{
+    transform: translateY(-50%);
+    -webkit-transform: translateY(-50%);
+    -moz-transform: translateY(-50%);
 }

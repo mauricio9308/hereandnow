@@ -39,6 +39,14 @@
         };
 
         /**
+         * Continues without a session
+         * */
+        vm.continueWithoutSession = function(){
+            //Removing the login dialog
+            toggleLoginDialog( false /* show */)
+        };
+
+        /**
          * Function for open the report dialog
          * */
         function toggleLoginDialog( show ){

@@ -29,6 +29,9 @@
     <h1 class="header__title">Here and Now</h1>
     <button id="logoutButton" ng-click="vm.logout()"
             ng-hide="!vm.currentUser || vm.isReportDialogOpen" aria-label="Close Session">Log out</button>
+    <button id="loginButton" ng-click="vm.login()"
+            ng-hide="vm.currentUser || vm.isReportDialogOpen" aria-label="Log in">Log in</button>
+
 </header>
 
 
@@ -70,6 +73,10 @@
             <!-- Button for the Google Plus login access -->
             <md-button class="md-raised md-primary" flex="100" ng-click="loginController.loginWithGooglePlus()">Google +</md-button>
 
+            <!-- Button for access without an account -->
+            <md-button class="md-raised" flex="100" ng-click="loginController.continueWithoutSession()">Continue</md-button>
+            <span style="text-align: center;">You cannot post without an active session</span>
+
             <p class="login-error-message" ng-show="loginController.errorMessage">{{ loginController.errorMessage }}</p>
             <p>By logging in to Here and Now you accept the <a href="index.html">terms and conditions.</a></p>
         </div>
@@ -93,15 +100,16 @@
 
         <!-- Iteration of the cards for the reports in the application -->
         <md-grid-tile ng-repeat="report in reportsController.reports"
-                      ng-style="{ 'background-color': report.color}" ng-click="reportsController.onReportClick( $event, report )">
+                      ng-style="{ 'background-color': reportsController.getReportColor( report )}" ng-click="reportsController.onReportClick( $event, report )">
+            <span id="report-description">{{ report.description }}</span>
             <md-grid-tile-footer>
-                <h3>{{ report.levelName }} {{ report.level }}</h3>
+                <h3>{{ reportsController.getReportCategory( report ) }}</h3>
             </md-grid-tile-footer>
         </md-grid-tile>
     </md-grid-list>
 
     <!-- Fab button for adding a report -->
-    <md-button class="md-fab md-primary main-add-fab" aria-label="Add report" ng-click="vm.addReport()" ng-hide="vm.isReportDialogOpen || !vm.currentUser">
+    <md-button class="md-fab md-primary main-add-fab" aria-label="Add report" ng-click="vm.addReport()" ng-hide="vm.isReportDialogOpen">
         <md-icon md-svg-src="images/ic_add_white_24px.svg"></md-icon>
     </md-button>
 </div>

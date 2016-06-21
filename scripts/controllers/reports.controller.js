@@ -5,24 +5,15 @@
 
     angular.module('alertSystem').controller('ReportsController', ReportsController);
 
-    ReportsController.$inject = ['LevelColorsService', '$mdDialog'];
+    ReportsController.$inject = ['LevelColorsService', '$mdDialog', '$firebaseArray'];
 
-    function ReportsController(LevelColorsService, $mdDialog) {
+    function ReportsController(LevelColorsService, $mdDialog, $firebaseArray) {
         var vm = this;
 
         function load(){
-            /* mock objects for the display of the alerts */
-            vm.reports = [
-                {
-                    authorUid: 123,
-                    date: "2016-06-10",
-                    description: "An event ocurred",
-                    isAnonymous : false,
-                    level: 1,
-                    longitude: 20,
-                    latitude: 20
-                }
-            ];
+            //Setting the reference for the reports reference
+            var reportsReference = firebase.database().ref().child('reports');
+            vm.reports = $firebaseArray(reportsReference);
 
             /* we add the color parsing to each of the objects */
             for( var i = 0, total = vm.reports.length; i < total; i ++ ){
@@ -31,12 +22,23 @@
                 vm.reports[i].color = LevelColorsService.getLevelColor( reportLevel );
                 vm.reports[i].levelName = LevelColorsService.getLevelName( reportLevel );
             }
-
-            console.log( vm.reports );
-            console.log( vm.reports.length );
         }
-
         load();
+
+        /**
+         * Getting the report color for the event
+         * */
+        vm.getReportColor = function( report ){
+            return LevelColorsService.getLevelColor( report.level );
+        };
+
+
+        /**
+         * Getting the report level name for the event
+         * */
+        vm.getReportCategory = function( report ){
+            return LevelColorsService.getLevelName( report.level );
+        };
 
         /**
          * Callback function for the click on a given report

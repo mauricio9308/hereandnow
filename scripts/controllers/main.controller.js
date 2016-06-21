@@ -19,7 +19,11 @@
 
         /* callback functions for the main toolbar actions */
         vm.addReport = function(){
-            toggleReportDialog( true ); // Displaying the dialog
+            if( $localStorage.user ){
+                toggleReportDialog( true ); // Displaying the report dialog
+            }else{
+                toggleLoginDialog( true ); // Displaying the login dialog
+            }
         };
 
         /**
@@ -35,6 +39,14 @@
             }).catch(function(){
                 ToastService.showMessage('There was an error while log in out :C')
             });
+        };
+
+        /**
+         * Opens the login dialog
+         * */
+        vm.login = function(){
+            /* displaying the login dialog */
+            toggleLoginDialog( true );
         };
 
 
