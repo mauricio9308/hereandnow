@@ -3,8 +3,6 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <!-- TODO Change this to the hosted app link -->
-    <link rel="canonical" href="https://weather-pwa-sample.firebaseapp.com/final/">
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Alert System</title>
@@ -79,14 +77,14 @@
 </div>
 
 <!-- Setting the Firebase connection -->
-<script src="https://www.gstatic.com/firebasejs/live/3.0/firebase.js"></script>
+<script src="bower_components/firebase/firebase.js"></script>
 <script>
     // Initialize Firebase
     var config = {
         apiKey: "AIzaSyAe56fymBclza-v-yGC_wiaSIptJlLB7mQ",
         authDomain: "alertsystem-9f7a1.firebaseapp.com",
         databaseURL: "https://alertsystem-9f7a1.firebaseio.com",
-        storageBucket: "",
+        storageBucket: ""
     };
 
     // Setting the firebase configuration
@@ -94,18 +92,23 @@
 </script>
 
 <!-- JS dependencies  -->
-<script src="bower_components/angular/angular.min.js"></script>
+
+<script src="bower_components/angular/angular.js"></script>
+<script src="bower_components/angularfire/dist/angularfire.min.js"></script>
 <script src="bower_components/ngstorage/ngStorage.min.js"></script>
 <script src="bower_components/angular-animate/angular-animate.min.js"></script>
 <script src="bower_components/angular-aria/angular-aria.min.js"></script>
 <script src="bower_components/angular-messages/angular-messages.min.js"></script>
 <script src="bower_components/angular-material/angular-material.min.js"></script>
 
+
 <!-- Angular related files -->
 <script src="scripts/app.js"></script>
 <script src="scripts/services/google.login.service.js"></script>
+<script src="scripts/services/notifications.service.js"></script>
 <script src="scripts/controllers/main.controller.js"></script>
 <script src="scripts/controllers/add.report.dialog.controller.js"></script>
+<script src="scripts/services/user.location.watcher.js"></script>
 <script src="scripts/controllers/login.dialog.controller.js"></script>
 
 
