@@ -6,25 +6,49 @@
 
     angular.module('alertSystem').controller('MainController', MainController);
 
-    MainController.$inject = ['$localStorage', '$rootScope'];
+    MainController.$inject = ['$localStorage', '$rootScope', 'GoogleLoginService', 'ToastService', '$scope'];
 
     /**
      * Controller for the Main Screen of the application
      * */
-    function MainController($localStorage, $rootScope){
+    function MainController($localStorage, $rootScope, GoogleLoginService, ToastService, $scope){
         var vm = this;
+
+        //Flag for the report dialog open
+        vm.isReportDialogOpen = ( !$localStorage.user );
 
         /* callback functions for the main toolbar actions */
         vm.addReport = function(){
-            toggleReportDialog( true ); // Displaying the dialog
+            if( $localStorage.user ){
+                toggleReportDialog( true ); // Displaying the report dialog
+            }else{
+                toggleLoginDialog( true ); // Displaying the login dialog
+            }
         };
 
         /**
-         * Refreshes the content displayed in the map view
+         * Starts the log out process for the current user
          * */
-        vm.refresh = function(){
-            alert('Add Function');
+        vm.logout = function(){
+            //We trigger the logout process
+            GoogleLoginService.logout().then(function(){
+                ToastService.showMessage('Success log in out C:. See you soon!')
+
+                /* displaying the login dialog */
+                toggleLoginDialog( true );
+            }).catch(function(){
+                ToastService.showMessage('There was an error while log in out :C')
+            });
         };
+
+        /**
+         * Opens the login dialog
+         * */
+        vm.login = function(){
+            /* displaying the login dialog */
+            toggleLoginDialog( true );
+        };
+
 
         /**
          * Checking if the user is already logged in, if so we hide the login dialog
@@ -43,9 +67,23 @@
             //We update the current user reference
             vm.currentUser = $localStorage.user;
 
-            var isUserAuthenticated = ( vm.currentUser === undefined );
+            var isUserAuthenticated = ( vm.currentUser !== undefined );
             toggleLoginDialog( !isUserAuthenticated  /* show */);
+
+            //Updating the angular references
+            $scope.$apply();
         });
+
+        /**
+         * Listening to the open or close of the report dialog
+         * */
+        $scope.$on('toggleReportDialog', function( event, isShowing ){
+            vm.isReportDialogOpen = isShowing;
+        });
+        $rootScope.$on('toggleReportDialog', function( event, isShowing ){
+            vm.isReportDialogOpen = isShowing;
+        });
+
 
         /**
          * Function for toggle the login dialog
@@ -66,6 +104,8 @@
          * Function for open the report dialog
          * */
         function toggleReportDialog( show ){
+            vm.isReportDialogOpen = show; // We update the visibility of the FAB
+
             var dialogElementClasses = document.querySelector('.dialog-container').classList;
 
             /* triggering the display or not of the dialog */
