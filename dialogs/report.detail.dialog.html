@@ -28,6 +28,14 @@
                 <br><br>
 
                 <!-- Description information -->
+                <div ng-show="vm.report.event">
+                    <strong>Event</strong>
+                    <br>
+                    <label>{{ vm.report.event }}</label>
+                    <br><br>
+                </div>
+
+                <!-- Description information -->
                 <strong>Description</strong>
                 <br>
                 <label>{{ vm.report.description }}</label>
@@ -37,7 +45,7 @@
                 <strong>Date</strong>
                 <br>
                 <label>{{ vm.report.date | date }}</label>
-                <br><br>
+                <br>
 
                 <div ng-hide="!vm.report.photoURL">
                     <strong>Image</strong>
@@ -71,11 +79,12 @@
                             'Error getting the user info'}}</span>
                     </div>
                 </div>
-                <br><br>
+                <br>
 
                 <!-- Location information -->
                 <strong>Location</strong>
                 <br>
+
                 <div class="image-wrap" id="wrapper">
                     <img ng-src="{{ vm.getMapUrl() }}">
                 </div>
