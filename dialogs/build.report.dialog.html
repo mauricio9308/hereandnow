@@ -33,12 +33,15 @@
                         </div>
                     </md-input-container>
 
+                    <input type="file" id="uploadfiles" ng-model="vm.report.photo" name="photo"/>
+
                     <!-- Input for posting anon -->
                     <md-input-container style="margin: 0;">
                         <md-switch ng-model="vm.report.isAnonymous">Publish anonymously</md-switch>
                     </md-input-container>
 
                     <p>Remember always add relevant information about the event (spam and offensive messages are reasons for ban)</p>
+
                 </form>
             </div>
         </md-dialog-content>
