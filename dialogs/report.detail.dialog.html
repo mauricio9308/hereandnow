@@ -12,7 +12,7 @@
     <div ng-hide="vm.isLoading">
         <md-toolbar ng-style="{ 'background-color': vm.getReportLevelColor() }">
             <div class="md-toolbar-tools">
-                <h2>Report</h2>
+                <h2>{{ vm.getReportLevelName() }} {{ vm.getReportLevelName() === 'Report' ? '' : 'Message'}}</h2>
                 <span flex></span>
                 <md-button class="md-icon-button" ng-click="vm.cancel()">
                     <md-icon md-svg-src="images/close_white.svg" aria-label="Close dialog"></md-icon>
@@ -21,12 +21,6 @@
         </md-toolbar>
         <md-dialog-content>
             <div class="md-dialog-content">
-                <!-- Category information -->
-                <strong>Category</strong>
-                <br>
-                <label>{{ vm.getReportLevelName() }}</label>
-                <br><br>
-
                 <!-- Description information -->
                 <div ng-show="vm.report.event">
                     <strong>Event</strong>
@@ -75,8 +69,16 @@
                         </md-list>
                     </div>
                     <div ng-show="!vm.report.user || vm.report.isAnonymous">
-                        <span>{{ vm.report.isAnonymous ? 'Anonymous reporter' :
-                            'Error getting the user info'}}</span>
+                        <!-- Representation of a missing user report -->
+                        <md-list>
+                            <md-list-item class="md-2-line">
+                                <img src="../images/anonymous.png" class="md-avatar" alt="User photo" />
+                                <div class="md-list-item-text">
+                                    <h3>{{ vm.report.isAnonymous ? 'Anonymous reporter' : 'Error getting the user info'}}</h3>
+                                    <p></p>
+                                </div>
+                            </md-list-item>
+                        </md-list>
                     </div>
                 </div>
                 <br>
