@@ -40,7 +40,13 @@
                     var ref = firebase.database().ref('/users/' + $localStorage.user.uid)
                     ref.on("value", function(snapshot) {
                         if (snapshot.val() == null) {
-                            firebase.database().ref("/users/" + $localStorage.user.uid).set($localStorage.user);
+                            var values = {
+                                displayName: $localStorage.user.displayName,
+                                email: $localStorage.user.email,
+                                photoURL: $localStorage.user.photoURL,
+                            };
+                            values.suscriberID = ""
+                            firebase.database().ref("/users/" + $localStorage.user.uid).set(values)
                         }
                         LocationWatcher.bindLocationUpdate();
                     }, function (errorObject) {
