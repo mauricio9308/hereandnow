@@ -64,9 +64,16 @@
                         description: vm.report.description,
                         isAnonymous: vm.report.isAnonymous,
                         level: level,
-                        latitude: position.coords.latitude,
-                        longitude: position.coords.longitude,
+                        location: {
+                            lat: position.coords.latitude,
+                            lng: position.coords.longitude
+                        }
                     };
+
+                    if(event){
+                        userData['event'] = event;
+                    }
+
                     if (photoURL){
                       userData['photoURL'] = photoURL
                     }
