@@ -1,5 +1,12 @@
 <md-dialog aria-label="Reporte" ng-cloak>
-    <form>
+
+    <!-- Container for the progress state -->
+    <div layout="row" layout-sm="column" layout-align="space-around" ng-show="vm.isLoading" >
+        <md-progress-circular md-mode="indeterminate" md-diameter="100px"></md-progress-circular>
+    </div>
+
+    <!-- Container for the form input -->
+    <div ng-hide="vm.isLoading">
         <md-toolbar>
             <div class="md-toolbar-tools">
                 <h2>Crear reporte</h2>
@@ -11,14 +18,19 @@
         </md-toolbar>
         <md-dialog-content>
             <div class="md-dialog-content">
-                <h2 style="margin: 0;">Creando un reporte de: {{ vm.getReportLevelName() }}</h2>
+                <h2 style="margin: 0;">Creando un reporte de: {{ getReportLevelName() }}</h2>
 
                 <!-- Form for creating the given report  -->
-                <form novalidate>
+                <form novalidate name="vm.reportForm">
                     <!-- Input for the description of the given report -->
                     <md-input-container class="md-block">
                         <label>Descripción</label>
-                        <textarea ng-model="vm.report.description" md-maxlength="400" rows="5" style="height : 100px;" md-select-on-focus></textarea>
+                        <textarea ng-model="vm.report.description" name="description"
+                                  md-maxlength="400" rows="5" style="height : 100px;" md-select-on-focus
+                                  required></textarea>
+                        <div ng-messages="vm.reportForm.description.$error">
+                            <div ng-message="required">Este campo es requerido.</div>
+                        </div>
                     </md-input-container>
 
                     <!-- Input for posting anon -->
@@ -26,7 +38,8 @@
                         <md-switch ng-model="vm.report.isAnonymous">Publicar anonimamente</md-switch>
                     </md-input-container>
 
-                    <p>Recuerda siempre agregar información relevante al suceso (Spam y mensajes basura serán razón de ban)</p>
+                    <p>Recuerda siempre agregar información relevante al suceso (Spam y mensajes basura serán razón de
+                        ban)</p>
                 </form>
             </div>
         </md-dialog-content>
@@ -35,9 +48,9 @@
             <md-button ng-click="vm.cancel()" style="margin-right:20px;">
                 Cancelar
             </md-button>
-            <md-button ng-click="vm.submit()" class="md-warn" style="margin-right:20px;">
+            <md-button ng-click="vm.submit( vm.reportForm )" class="md-warn" style="margin-right:20px;">
                 Enviar
             </md-button>
         </md-dialog-actions>
-    </form>
+    </div>
 </md-dialog>
