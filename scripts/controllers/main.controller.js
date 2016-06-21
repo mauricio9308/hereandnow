@@ -6,12 +6,12 @@
 
     angular.module('alertSystem').controller('MainController', MainController);
 
-    MainController.$inject = ['$localStorage', '$rootScope', 'GoogleLoginService', 'ToastService'];
+    MainController.$inject = ['$localStorage', '$rootScope', 'GoogleLoginService', 'ToastService', '$scope'];
 
     /**
      * Controller for the Main Screen of the application
      * */
-    function MainController($localStorage, $rootScope, GoogleLoginService, ToastService){
+    function MainController($localStorage, $rootScope, GoogleLoginService, ToastService, $scope){
         var vm = this;
 
         //Flag for the report dialog open
@@ -19,7 +19,6 @@
 
         /* callback functions for the main toolbar actions */
         vm.addReport = function(){
-            console.log('add report...');
             toggleReportDialog( true ); // Displaying the dialog
         };
 
@@ -56,6 +55,14 @@
             var isUserAuthenticated = ( vm.currentUser === undefined );
             toggleLoginDialog( !isUserAuthenticated  /* show */);
         });
+
+        /**
+         * Listening to the open or close of the report dialog
+         * */
+        $scope.$on('toggleReportDialog', function( event, isShowing ){
+            vm.isReportDialogOpen = isShowing;
+        });
+
 
         /**
          * Function for toggle the login dialog

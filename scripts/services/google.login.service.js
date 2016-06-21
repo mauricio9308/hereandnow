@@ -7,11 +7,11 @@
     angular.module('alertSystem').factory('GoogleLoginService', GoogleLoginService);
 
     //Declaration of the factory
-    GoogleLoginService.$inject = ['$q', '$localStorage', '$firebaseAuth', 'LocationWatcher'];
+    GoogleLoginService.$inject = ['$q', '$localStorage', '$firebaseAuth', 'LocationWatcher', '$rootScope'];
     /**
      * Service in charge of the Google Login Management
      * */
-    function GoogleLoginService($q, $localStorage, $firebaseAuth, LocationWatcher) {
+    function GoogleLoginService($q, $localStorage, $firebaseAuth, LocationWatcher, $rootScope) {
         var fbAuth = $firebaseAuth();
 
         // Public API

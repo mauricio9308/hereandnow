@@ -46,7 +46,7 @@ body {
   width: 100%;
   height: 56px;
   color: #FFF;
-  background: #D32F2F;
+  background: #009688;
   position: fixed;
   /*font-size: 20px;*/
   box-shadow: 0 4px 5px 0 rgba(0, 0, 0, 0.14), 0 2px 9px 1px rgba(0, 0, 0, 0.12), 0 4px 2px -2px rgba(0, 0, 0, 0.2);
@@ -98,7 +98,7 @@ body {
           transform: translate(-50%, -50%); }
   .loader #spinner {
     box-sizing: border-box;
-    stroke: #D32F2F;
+    stroke: #009688;
     stroke-width: 3px;
     -webkit-transform-origin: 50%;
             transform-origin: 50%;
@@ -398,19 +398,19 @@ p.login-error-message{
 }
 
 .lost-card{
-    background-color: #3f51b5;
+    background-color: #326BAB;
 }
 
 .alert-card{
-    background-color: #cd5c5c;
+    background-color: #C33E38;
 }
 
 .warning-card{
-    background-color: #ffff8d;
+    background-color: #E5B340;
 }
 
 .message-card{
-    background-color: #b9f6ca;
+    background-color: #3F9848;
 }
 
 .add-report-button-row{
@@ -431,6 +431,7 @@ p.login-error-message{
     display: block;
     position: relative;
     margin: 4px;
+    color: white;
 }
 
 .main-add-fab{

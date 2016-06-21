@@ -8,12 +8,12 @@
     angular.module('alertSystem').controller('AddReportDialogController', AddReportDialogController);
 
     /* injecting the dependencies */
-    AddReportDialogController.$inject = ['ReportsService', '$mdDialog'];
+    AddReportDialogController.$inject = ['ReportsService', '$mdDialog', '$scope'];
 
     /**
      * Controller for adding a given report to the actual location
      * */
-    function AddReportDialogController(ReportsService, $mdDialog) {
+    function AddReportDialogController(ReportsService, $mdDialog, $scope) {
         var vm = this;
 
         /**
@@ -49,6 +49,8 @@
          * Function for open the report dialog
          * */
         function toggleReportDialog(show) {
+            $scope.$emit('toggleReportDialog', show);
+
             var dialogElementClasses = document.querySelector('.dialog-container').classList;
 
             /* triggering the display or not of the dialog */
