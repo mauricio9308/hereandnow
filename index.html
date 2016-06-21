@@ -35,20 +35,27 @@
 <!-- Dialog for the report adding -->
 <div class="dialog-container" ng-controller="AddReportDialogController as dcontroller">
     <div class="dialog">
-        <div class="dialog-title">Add new city</div>
-        <div class="dialog-body">
-            <select id="selectCityToAdd">
-                <option value="austin">Austin, TX</option>
-                <option value="boston">Boston, MA</option>
-                <option value="chicago">Chicago, IL</option>
-                <option value="portland">Portland, OR</option>
-                <option value="sanfrancisco">San Francisco, CA</option>
-                <option value="seattle">Seattle, WA</option>
-            </select>
+        <div class="dialog-title">Crear reporte</div>
+        <div class="dialog-body" layout="column">
+            <div layout="row" class="add-report-button-row">
+                <div md-ink-ripple class="alert-card" ng-click="dcontroller.createReport($event, 4)">
+                    <p>Alert</p>
+                </div>
+                <div md-ink-ripple class="warning-card" ng-click="dcontroller.createReport($event, 3)">
+                    <p>Warning</p>
+                </div>
+            </div>
+            <div layout="row" class="add-report-button-row">
+                <div md-ink-ripple class="message-card" ng-click="dcontroller.createReport($event, 2)">
+                    <p>Message</p>
+                </div>
+                <div md-ink-ripple class="lost-card" ng-click="dcontroller.createReport($event, 1)">
+                    <p>Lost</p>
+                </div>
+            </div>
         </div>
         <div class="dialog-buttons">
-            <button id="butAddCity" class="button" ng-click="dcontroller.createReport()">Add</button>
-            <button id="butAddCancel" class="button" ng-click="dcontroller.cancelReportCreation()">Cancel</button>
+            <button id="butAddCancel" class="button" ng-click="dcontroller.cancelReportCreation()">Cancelar</button>
         </div>
     </div>
 </div>
@@ -56,7 +63,7 @@
 <!-- Dialog for the login process -->
 <div class="login-container login-container--visible" ng-controller="LoginDialogController as loginController">
     <div class="dialog">
-        <div class="dialog-title">¡Bienvenido a Alert System!</div>
+        <div class="dialog-title">¡Bienvenido a Aler!</div>
         <div class="dialog-body" layout="column">
             <p>Inicia sesión con:</p>
 
@@ -127,7 +134,9 @@
 <script src="scripts/services/google.login.service.js"></script>
 <script src="scripts/services/level.colors.service.js"></script>
 <script src="scripts/services/notifications.service.js"></script>
+<script src="scripts/services/reports.service.js"></script>
 <script src="scripts/controllers/main.controller.js"></script>
+<script src="scripts/controllers/build.report.dialog.controller.js"></script>
 <script src="scripts/controllers/reports.controller.js"></script>
 <script src="scripts/controllers/add.report.dialog.controller.js"></script>
 <script src="scripts/services/user.location.watcher.js"></script>
