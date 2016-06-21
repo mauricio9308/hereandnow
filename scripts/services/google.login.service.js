@@ -7,45 +7,81 @@
     angular.module('alertSystem').factory('GoogleLoginService', GoogleLoginService);
 
     //Declaration of the factory
-    GoogleLoginService.$inject = ['$q'];
+    GoogleLoginService.$inject = ['$q', '$localStorage'];
     /**
      * Service in charge of the Google Login Management
      * */
-    function GoogleLoginService($q){
+    function GoogleLoginService($q, $localStorage){
 
         // Public API
         return {
-            googleLogin: googleLogin
+            googleLogin: googleLogin,
+            logout : logout
         };
 
         /**
          * Executes the google login sequence
          * */
         function googleLogin(){
-            /* requesting the firebase authentication */
+            var googleLoginDefer = $q.defer();
+
+            // Setting the Google Auth Provider
+            var provider = new firebase.auth.GoogleAuthProvider();
+
+            /* requesting the Firebase authentication */
             firebase.auth().signInWithPopup(provider).then(function(result) {
                 // This gives you a Google Access Token. You can use it to access the Google API.
-                var token = result.credential.accessToken;
-                // The signed-in user info.
-                var user = result.user;
-                // ...
+                $localStorage.accessToken = result.credential.accessToken;
+
+                //We store the user information
+                $localStorage.user = {
+                    displayName : result.user.displayName,
+                    email: result.email,
+                    photoURL : result.photoURL,
+                    uid : result.uid
+                };
+
+                //Success authenticating the user
+                googleLoginDefer.resolve( result );
             }).catch(function(error) {
                 // Handle Errors here.
                 var errorCode = error.code;
                 var errorMessage = error.message;
-                // The email of the user's account used.
-                var email = error.email;
-                // The firebase.auth.AuthCredential type that was used.
-                var credential = error.credential;
-                // ...
+
+                //Loggin the error message
+                console.log( errorMessage );
+                console.log( errorCode );
+
+                // Rejecting the Google + login
+                googleLoginDefer.reject( errorMessage );
             });
 
+            //Returning the google login promise
+            return googleLoginDefer.promise;
+        }
 
-            if(firebase){
-                alert('Firebase set');
-            }else{
-                alert('Firebase not set');
-            }
+        /**
+         * Just log outs the user of the API
+         * */
+        function logout(){
+            var logoutDefer = $q.defer();
+
+            firebase.auth().signOut().then(function() {
+                // Sign-out successful.
+
+                /* we destroy any reference of the user */
+                $localStorage.$reset();
+
+                logoutDefer.resolve( true );
+            }, function(error) {
+                // An error happened, we don't care we just advice the user.
+                console.log( error );
+
+                logoutDefer.reject( false );
+            });
+
+            //Returning the logout promise
+            return logoutDefer.promise;
         }
     }
 

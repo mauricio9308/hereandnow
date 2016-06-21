@@ -29,7 +29,7 @@
   };
 
   //Declaration of the application module
-  var angularApp = angular.module('alertSystem', ['ngMaterial']);
+  var angularApp = angular.module('alertSystem', ['ngMaterial', 'ngStorage']);
 
   // Setting application configuration
   angular
