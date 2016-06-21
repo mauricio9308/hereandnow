@@ -421,14 +421,26 @@ p.login-error-message{
 .add-report-button-row p{
     z-index: 3;
     position: absolute;
-    top: 25px;
+    top: 100px;
     width: 100%;
     text-align: center;
 }
 
+
+.add-report-button-row img{
+    z-index: 3;
+    position: absolute;
+    top: 27px;
+    width: 90px;
+    height: 90px;
+    text-align: center;
+    margin: 0 auto;
+    left: 27px;
+}
+
 .add-report-button-row div{
-    width: 100px;
-    height: 100px;
+    width: 150px;
+    height: 150px;
     display: block;
     position: relative;
     margin: 4px;
@@ -443,7 +455,7 @@ p.login-error-message{
 
 .main-add-fab-log-in{
     position: fixed !important;
-    bottom: 65px !important;
+    bottom: 72px !important;
     right: 16px !important;
 }
 
@@ -451,6 +463,8 @@ p.login-error-message{
 #loginButton{
     font-weight: bold;
     color: white;
+    background-color: transparent;
+    border: none;
     margin-bottom: 20px;
 }
 
@@ -467,4 +481,8 @@ p.login-error-message{
 #here-logo{
     width: 100%;
     padding: 16px 16px 0 16px;
+}
+
+.md-dialog-container{
+    z-index: 999999 !important;
 }

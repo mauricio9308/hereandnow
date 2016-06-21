@@ -7,9 +7,9 @@
     angular.module('alertSystem').controller('ReportDetailDialogController', ReportDetailDialogController);
 
     //Setting the dependencies
-    ReportDetailDialogController.$inject = ['report', 'LevelColorsService', '$mdDialog'];
+    ReportDetailDialogController.$inject = ['report', 'LevelColorsService', '$mdDialog', '$window'];
 
-    function ReportDetailDialogController(report, LevelColorsService, $mdDialog) {
+    function ReportDetailDialogController(report, LevelColorsService, $mdDialog, $window) {
         var vm = this;
 
         //Passing the reference of the loaded
@@ -35,7 +35,10 @@
                     }
 
                     /* success getting the user information */
-                    console.log( user );
+                    console.log( user.val() );
+
+                    //Setting the reference for the user information
+                    vm.report.user = user.val();
 
                     vm.isLoading = false;
                 }, function (errorObject) {
@@ -72,6 +75,13 @@
                 + ','+ report.longitude;
 
             return url;
+        };
+
+        /**
+         * Sends an email to the author of the email
+         * */
+        vm.sendEmail = function( user ){
+            $window.open('mailto:' + user.email + '?Subject=Hello%20from%20Here%20and%20now!', '_blank');
         };
 
         /**
