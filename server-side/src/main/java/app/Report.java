@@ -12,6 +12,17 @@ public class Report {
     private String level;
     private Location location;
 
+    public Report(String authorDisplayName, String authorUid, String date, String description,
+                  String isAnonymous, String level, Location location) {
+        this.authorDisplayName = authorDisplayName;
+        this.authorUid = authorUid;
+        this.date = date;
+        this.description = description;
+        this.isAnonymous = isAnonymous;
+        this.level = level;
+        this.location = location;
+    }
+
     Report() {}
 
     public String getAuthorDisplayName() {
