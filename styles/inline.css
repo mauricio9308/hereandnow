@@ -463,6 +463,8 @@ p.login-error-message{
 #loginButton{
     font-weight: bold;
     color: white;
+    background-color: transparent;
+    border: none;
     margin-bottom: 20px;
 }
 
@@ -479,4 +481,8 @@ p.login-error-message{
 #here-logo{
     width: 100%;
     padding: 16px 16px 0 16px;
+}
+
+.md-dialog-container{
+    z-index: 999999 !important;
 }

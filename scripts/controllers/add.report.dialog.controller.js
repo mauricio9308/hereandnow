@@ -8,12 +8,12 @@
     angular.module('alertSystem').controller('AddReportDialogController', AddReportDialogController);
 
     /* injecting the dependencies */
-    AddReportDialogController.$inject = ['ReportsService', '$mdDialog', '$scope'];
+    AddReportDialogController.$inject = ['ReportsService', '$mdDialog', '$scope', '$mdMedia'];
 
     /**
      * Controller for adding a given report to the actual location
      * */
-    function AddReportDialogController(ReportsService, $mdDialog, $scope) {
+    function AddReportDialogController(ReportsService, $mdDialog, $scope, $mdMedia) {
         var vm = this;
 
         /**
@@ -21,6 +21,7 @@
          * */
         vm.createReport = function (ev, reportKind) {
             /* create a dialog for the creation of a report */
+            var useFullScreen = ($mdMedia('sm') || $mdMedia('xs') || $mdMedia('md'));
             $mdDialog.show({
                 controller: 'BuildReportDialogController as vm',
                 templateUrl: 'dialogs/build.report.dialog.html',
@@ -30,7 +31,7 @@
                     level: reportKind
                 },
                 clickOutsideToClose: false,
-                fullscreen: false
+                fullscreen: useFullScreen
             });
 
             /* we close the previous dialog */

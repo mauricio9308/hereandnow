@@ -5,9 +5,9 @@
 
     angular.module('alertSystem').controller('ReportsController', ReportsController);
 
-    ReportsController.$inject = ['LevelColorsService', '$mdDialog', '$firebaseArray'];
+    ReportsController.$inject = ['LevelColorsService', '$mdDialog', '$firebaseArray', '$mdMedia'];
 
-    function ReportsController(LevelColorsService, $mdDialog, $firebaseArray) {
+    function ReportsController(LevelColorsService, $mdDialog, $firebaseArray, $mdMedia) {
         var vm = this;
 
         function load(){
@@ -44,7 +44,7 @@
          * Callback function for the click on a given report
          * */
         vm.onReportClick = function( ev, report ){
-            console.log('click on report: ' + JSON.stringify( report ));
+            var useFullScreen = ($mdMedia('sm') || $mdMedia('xs') || $mdMedia('md'));
 
             /* create a dialog for the creation of a report */
             $mdDialog.show({
@@ -56,7 +56,7 @@
                     report: report
                 },
                 clickOutsideToClose: false,
-                fullscreen: false
+                fullscreen: useFullScreen
             });
         };
 
