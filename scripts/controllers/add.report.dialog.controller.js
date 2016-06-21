@@ -7,17 +7,34 @@
     //Declaring the module
     angular.module('alertSystem').controller('AddReportDialogController', AddReportDialogController);
 
+    /* injecting the dependencies */
+    AddReportDialogController.$inject = ['ReportsService', '$mdDialog'];
+
     /**
      * Controller for adding a given report to the actual location
      * */
-    function AddReportDialogController(){
+    function AddReportDialogController(ReportsService, $mdDialog){
         var vm = this;
 
         /**
          * Callback for the closing of the report dialog
          * */
-        vm.createReport = function(){
-            // TODO implement this function
+        vm.createReport = function( ev, reportKind ){
+            /* create a dialog for the creation of a report */
+            $mdDialog.show({
+                    controller: 'BuildReportDialogController as vm',
+                    templateUrl: 'dialogs/build.report.dialog.html',
+                    parent: angular.element(document.body),
+                    targetEvent: ev,
+                    locals: {
+                        level: reportKind
+                    },
+                    clickOutsideToClose: true,
+                    fullscreen: false
+            });
+
+            /* we close the previous dialog */
+            toggleReportDialog( false /* show */);
         };
 
         /**

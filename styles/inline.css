@@ -396,3 +396,55 @@ p.login-error-message{
   .mdl-button--primary.mdl-button--primary.mdl-button--raised, .mdl-button--primary.mdl-button--primary.mdl-button--fab {
     color: white;
     background-color: #3f51b5; }
+
+.reports-list md-grid-list{
+    margin: 8px;
+}
+
+.reports-list md-grid-tile p{
+    transform: translateY(-20%);
+    -webkit-transform: translateY(-20%);
+    -moz-transform: translateY(-20%);
+    margin: 10px;
+    font-weight: bold;
+}
+
+.reports-list md-grid-tile{
+    transition: all 400ms ease-out 50ms;
+}
+
+.lost-card{
+    background-color: #3f51b5;
+}
+
+.alert-card{
+    background-color: #cd5c5c;
+}
+
+.warning-card{
+    background-color: #ffff8d;
+}
+
+.message-card{
+    background-color: #b9f6ca;
+}
+
+.add-report-button-row{
+    margin: 0 auto;
+}
+
+.add-report-button-row p{
+    z-index: 3;
+    position: absolute;
+    top: 25px;
+    width: 100%;
+    text-align: center;
+}
+
+.add-report-button-row div{
+    width: 100px;
+    height: 100px;
+    display: block;
+    position: relative;
+    margin: 4px;
+}

@@ -5,8 +5,7 @@
   var angularApp = angular.module('alertSystem', ['ngMaterial', 'ngStorage', 'firebase']);
 
   // Setting application configuration
-  angular
-      .module('alertSystem')
+  angularApp
       .config(applicationConfigFunction)
       .run(applicationRunFunction);
 
@@ -23,16 +22,6 @@
     /* setting the angular material custom theme */
     $mdThemingProvider.theme('default').primaryPalette('red');
   }
-
-  var app = {
-    hasRequestPending: false,
-    isLoading: true,
-    visibleCards: {},
-    selectedCities: [],
-    spinner: document.querySelector('.loader'),
-    cardTemplate: document.querySelector('.cardTemplate'),
-    container: document.querySelector('.main')
-  };
   
   applicationRunFunction.$inject = ['NotificationsService'];
 
@@ -44,6 +33,7 @@
         console.log('Service Worker is ready :)', reg);
         reg.pushManager.subscribe({userVisibleOnly: true}).then(function(sub) {
           var subscriberId = sub.endpoint.replace('https://android.googleapis.com/gcm/send/', '');
+          console.log('subscriberId', subscriberId);
           NotificationsService.setSubscriberId(subscriberId);
         });
       }).catch(function(error) {

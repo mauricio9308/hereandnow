@@ -37,7 +37,7 @@
                         uid: authData.user.uid
                     };
 
-                    var ref = firebase.database().ref('/users/' + $localStorage.user.uid)
+                    var ref = firebase.database().ref('/users/' + $localStorage.user.uid);
                     ref.on("value", function(snapshot) {
                         if (snapshot.val() == null) {
                             var values = {

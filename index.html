@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Alert System</title>
     <link rel="stylesheet" type="text/css" href="styles/inline.css">
+    <link rel="stylesheet" type="text/css" href="styles/styles.css">
 
     <!-- Definition of the libraries css -->
     <link rel="stylesheet" type="text/css" href="bower_components/angular-material/angular-material.min.css">
@@ -23,32 +24,39 @@
     <meta name="msapplication-TileImage" content="images/icons/icon-144x144.png">
     <meta name="msapplication-TileColor" content="#2F3BA2">
 </head>
-<body ng-controller="MainController as vm">
+<body ng-controller="MainController as vm" ng-cloak>
 
 <header class="header">
     <h1 class="header__title">Alert System</h1>
-    <button id="butRefresh" class="headerButton" ng-click="vm.refresh()" aria-label="Refresh"></button>
-    <button id="butAdd" class="headerButton" ng-click="vm.addReport()" aria-label="Add"></button>
+    <button id="butRefresh" class="headerButton" ng-click="vm.refresh()" ng-hide="!vm.currentUser" aria-label="Refresh"></button>
+    <button id="butAdd" class="headerButton" ng-click="vm.addReport()" ng-hide="!vm.currentUser" aria-label="Add"></button>
 </header>
 
 
 <!-- Dialog for the report adding -->
 <div class="dialog-container" ng-controller="AddReportDialogController as dcontroller">
     <div class="dialog">
-        <div class="dialog-title">Add new city</div>
-        <div class="dialog-body">
-            <select id="selectCityToAdd">
-                <option value="austin">Austin, TX</option>
-                <option value="boston">Boston, MA</option>
-                <option value="chicago">Chicago, IL</option>
-                <option value="portland">Portland, OR</option>
-                <option value="sanfrancisco">San Francisco, CA</option>
-                <option value="seattle">Seattle, WA</option>
-            </select>
+        <div class="dialog-title">Crear reporte</div>
+        <div class="dialog-body" layout="column">
+            <div layout="row" class="add-report-button-row">
+                <div md-ink-ripple class="alert-card" ng-click="dcontroller.createReport($event, 4)">
+                    <p>Alert</p>
+                </div>
+                <div md-ink-ripple class="warning-card" ng-click="dcontroller.createReport($event, 3)">
+                    <p>Warning</p>
+                </div>
+            </div>
+            <div layout="row" class="add-report-button-row">
+                <div md-ink-ripple class="message-card" ng-click="dcontroller.createReport($event, 2)">
+                    <p>Message</p>
+                </div>
+                <div md-ink-ripple class="lost-card" ng-click="dcontroller.createReport($event, 1)">
+                    <p>Lost</p>
+                </div>
+            </div>
         </div>
         <div class="dialog-buttons">
-            <button id="butAddCity" class="button" ng-click="dcontroller.createReport()">Add</button>
-            <button id="butAddCancel" class="button" ng-click="dcontroller.cancelReportCreation()">Cancel</button>
+            <button id="butAddCancel" class="button" ng-click="dcontroller.cancelReportCreation()">Cancelar</button>
         </div>
     </div>
 </div>
@@ -56,7 +64,7 @@
 <!-- Dialog for the login process -->
 <div class="login-container login-container--visible" ng-controller="LoginDialogController as loginController">
     <div class="dialog">
-        <div class="dialog-title">¡Bienvenido a Alert System!</div>
+        <div class="dialog-title">¡Bienvenido a Aler!</div>
         <div class="dialog-body" layout="column">
             <p>Inicia sesión con:</p>
 
@@ -70,10 +78,30 @@
 </div>
 
 <!-- Loader element -->
-<div class="loader">
+<div class="loader" ng-show="vm.isLoading">
     <svg viewBox="0 0 32 32" width="32" height="32">
         <circle id="spinner" cx="16" cy="16" r="14" fill="none"></circle>
     </svg>
+</div>
+
+<!-- Container for the list of reports -->
+<div ng-controller="ReportsController as reportsController" ng-cloak class="reports-list" style="overflow: auto;">
+
+    <!-- List for the reports in a given area -->
+    <md-grid-list
+            md-cols-xs="2" md-cols-sm="2" md-cols-md="4" md-cols-gt-md="6"
+            md-row-height-gt-md="1:1" md-row-height="1:1"
+            md-gutter="12px" md-gutter-gt-sm="8px" style="height: 90vh; margin-top: 65px">
+
+        <!-- Iteration of the cards for the reports in the application -->
+        <md-grid-tile ng-repeat="report in reportsController.reports"
+                      ng-style="{ 'background-color': report.color}">
+            <md-grid-tile-footer>
+                <h3>{{ report.levelName }} {{ report.level }}</h3>
+            </md-grid-tile-footer>
+        </md-grid-tile>
+    </md-grid-list>
+
 </div>
 
 <!-- Setting the Firebase connection -->
@@ -105,8 +133,12 @@
 <!-- Angular related files -->
 <script src="scripts/app.js"></script>
 <script src="scripts/services/google.login.service.js"></script>
+<script src="scripts/services/level.colors.service.js"></script>
 <script src="scripts/services/notifications.service.js"></script>
+<script src="scripts/services/reports.service.js"></script>
 <script src="scripts/controllers/main.controller.js"></script>
+<script src="scripts/controllers/build.report.dialog.controller.js"></script>
+<script src="scripts/controllers/reports.controller.js"></script>
 <script src="scripts/controllers/add.report.dialog.controller.js"></script>
 <script src="scripts/services/user.location.watcher.js"></script>
 <script src="scripts/controllers/login.dialog.controller.js"></script>
