@@ -459,3 +459,12 @@ p.login-error-message{
     -webkit-transform: translateY(-50%);
     -moz-transform: translateY(-50%);
 }
+
+.main-login-title{
+    text-align: center;
+}
+
+#here-logo{
+    width: 100%;
+    padding: 16px 16px 0 16px;
+}

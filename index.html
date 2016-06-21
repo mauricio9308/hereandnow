@@ -66,15 +66,18 @@
 <!-- Dialog for the login process -->
 <div class="login-container login-container--visible" ng-controller="LoginDialogController as loginController" ng-cloak style="display:none;" ng-style="loginController.loaded">
     <div class="dialog">
-        <div class="dialog-title" style="text-align: center;">Welcome to Here and Now!</div>
+        <img src="images/logos/hereandnow.png" id="here-logo">
+
         <div class="dialog-body" layout="column">
-            <p>Log in with:</p>
+            <p class="main-login-title">Log in with:</p>
 
             <!-- Button for the Google Plus login access -->
             <md-button class="md-raised md-primary" flex="100" ng-click="loginController.loginWithGooglePlus()">Google +</md-button>
 
+            <p class="main-login-title">Or</p>
+
             <!-- Button for access without an account -->
-            <md-button class="md-raised" flex="100" ng-click="loginController.continueWithoutSession()">Continue</md-button>
+            <md-button class="md-raised" flex="100" ng-click="loginController.continueWithoutSession()">Continue without</md-button>
             <span style="text-align: center;">You cannot post without an active session</span>
 
             <p class="login-error-message" ng-show="loginController.errorMessage">{{ loginController.errorMessage }}</p>

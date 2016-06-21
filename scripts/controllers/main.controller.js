@@ -67,8 +67,6 @@
             //We update the current user reference
             vm.currentUser = $localStorage.user;
 
-            console.log('updating the main reference ', vm.currentUser);
-
             var isUserAuthenticated = ( vm.currentUser !== undefined );
             toggleLoginDialog( !isUserAuthenticated  /* show */);
 
