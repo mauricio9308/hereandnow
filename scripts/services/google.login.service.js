@@ -45,15 +45,16 @@
 
                     var ref = firebase.database().ref('/users/' + $localStorage.user.uid);
                     ref.on("value", function(snapshot) {
-                        if (snapshot.val() == null) {
-                            var values = {
-                                displayName: $localStorage.user.displayName,
-                                email: $localStorage.user.email,
-                                photoURL: $localStorage.user.photoURL
-                            };
-
-                            firebase.database().ref("/users/" + $localStorage.user.uid).set(values)
+                        var values = {};
+                        if (snapshot.val() != null) {
+                            values = snapshot.val();
                         }
+
+                        values.displayName = $localStorage.user.displayName;
+                        values.email = $localStorage.user.email;
+                        values.photoURL = $localStorage.user.photoURL;
+
+                        firebase.database().ref("/users/" + $localStorage.user.uid).set(values);
 
                         /* broadcast the user update */
                         $rootScope.$emit('UserAuthenticationChanged');
