@@ -31,13 +31,13 @@
             getLevelName : function( level ){
                 switch( level ){
                     case LEVEL_LOST:
-                        return 'Lost';
+                        return 'Assist';
                     case LEVEL_MESSAGE:
-                        return 'Message';
+                        return 'Report';
                     case LEVEL_WARNING:
-                        return 'Warning';
+                        return 'Caution';
                     case LEVEL_ALERT:
-                        return 'Alert'
+                        return 'Danger'
                 }
             }
         }

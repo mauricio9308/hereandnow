@@ -8,14 +8,14 @@
 
     /* injecting the report message */
     BuildReportDialogController.$inject = ['ReportsService', 'level', 'LevelColorsService',
-        '$mdDialog', '$localStorage', 'ToastService', '$rootScope', 'uploadPictureController'];
+        '$mdDialog', '$localStorage', 'ToastService', '$rootScope', 'event', 'uploadPictureController'];
 
     /**
      * Controller in charge of the report creation
      * */
     function BuildReportDialogController( ReportsService, level, LevelColorsService,
-                                          $mdDialog, $localStorage, ToastService, $rootScope,
-                                          uploadPictureController){
+                                          $mdDialog, $localStorage, ToastService, $rootScope, event, uploadPictureController){
+
         var vm = this;
 
         //Loading flag
@@ -26,6 +26,8 @@
             //We make only level 2 or less alert kinds public by default (Message and lost)
             isAnonymous : ( level <= 2 ? false : true )
         };
+
+        console.log('passed event: ' + event);
 
         /**
          * Getting the reference of the given report level
