@@ -40,7 +40,15 @@
                 <div>
                     <strong>Reporter</strong>
                     <br>
-                    <label>{{ (!vm.report.user || vm.report.user.isAnonymous) ? 'Anonymous' : vm.report.displayName  }}</label>
+                    <div ng-show="vm.report.user">
+
+                    </div>
+                    <div ng-show="!vm.report.user || vm.report.isAnonymous">
+
+                    </div>
+
+                    <label>{{ (!vm.report.user || vm.report.isAnonymous)
+                        ? 'Anonymous' : vm.repo  }}</label>
                 </div>
                 <br>
 

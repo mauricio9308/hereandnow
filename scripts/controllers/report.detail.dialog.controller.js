@@ -16,12 +16,36 @@
         vm.report = report;
 
         /* loading flag */
-        var isLoading = false;
+        vm.isLoading = undefined;
 
         /* at first we fetch the information for the given report */
         function fetchReportInfo() {
-            // TODO fetch this info
+            if( report.isAnonymous ){
+                vm.isLoading = false; // Nothing else to load
+            }else{
+                //Setting the loading flag
+                vm.isLoading = true;
+
+                /* loading the information of the user */
+                var ref = firebase.database().ref('/users/' + report.authorUid);
+                ref.on("value", function(user) {
+                    if (user.val() == null) {
+                        console.log("FATAL: Invalid user id");
+                        vm.isLoading = false;
+                    }
+
+                    /* success getting the user information */
+                    console.log( user );
+
+                    vm.isLoading = false;
+                }, function (errorObject) {
+                    console.log("FATAL: The user fetch failed: " + errorObject.code);
+
+                    vm.isLoading = false;
+                });
+            }
         }
+        fetchReportInfo();
 
         /**
          * Getting the reference of the given report level
@@ -37,6 +61,7 @@
             return LevelColorsService.getLevelColor(report.level);
         };
 
+
         /**
          * Generates the map url for the report
          * */
@@ -45,8 +70,6 @@
                 + report.longitude + '&zoom=14&size=250x150&key='
                 + 'AIzaSyBKJf8isx7I4whd_eMe7LxNFDoXZNMwZrg' + '&markers=color:blue%7Clabel:'+ vm.getReportLevelName().charAt(0) +'%7C' + report.latitude
                 + ','+ report.longitude;
-
-            console.log(url);
 
             return url;
         };
