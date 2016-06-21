@@ -416,6 +416,7 @@ p.login-error-message {
     transform: translateY(-50%);
     -webkit-transform: translateY(-50%);
     -moz-transform: translateY(-50%);
+    color: white;
 }
 
 .main-login-title {
