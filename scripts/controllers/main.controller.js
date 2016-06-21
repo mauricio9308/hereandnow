@@ -6,25 +6,35 @@
 
     angular.module('alertSystem').controller('MainController', MainController);
 
-    MainController.$inject = ['$localStorage', '$rootScope'];
+    MainController.$inject = ['$localStorage', '$rootScope', 'GoogleLoginService', 'ToastService'];
 
     /**
      * Controller for the Main Screen of the application
      * */
-    function MainController($localStorage, $rootScope){
+    function MainController($localStorage, $rootScope, GoogleLoginService, ToastService){
         var vm = this;
+
+        //Flag for the report dialog open
+        vm.isReportDialogOpen = false;
 
         /* callback functions for the main toolbar actions */
         vm.addReport = function(){
+            console.log('add report...');
             toggleReportDialog( true ); // Displaying the dialog
         };
 
         /**
-         * Refreshes the content displayed in the map view
+         * Starts the log out process for the current user
          * */
-        vm.refresh = function(){
-            alert('Add Function');
+        vm.logout = function(){
+            //We trigger the logout process
+            GoogleLoginService.logout().then(function(){
+                ToastService.showMessage('Success log in out C:. See you soon!')
+            }).catch(function(){
+                ToastService.showMessage('There was an error while log in out :C')
+            });
         };
+
 
         /**
          * Checking if the user is already logged in, if so we hide the login dialog
@@ -66,6 +76,8 @@
          * Function for open the report dialog
          * */
         function toggleReportDialog( show ){
+            vm.isReportDialogOpen = show; // We update the visibility of the FAB
+
             var dialogElementClasses = document.querySelector('.dialog-container').classList;
 
             /* triggering the display or not of the dialog */

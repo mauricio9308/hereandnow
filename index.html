@@ -27,8 +27,8 @@
 
 <header class="header">
     <h1 class="header__title">Alert System</h1>
-    <button id="butRefresh" class="headerButton" ng-click="vm.refresh()" ng-hide="!vm.currentUser" aria-label="Refresh"></button>
-    <button id="butAdd" class="headerButton" ng-click="vm.addReport()" ng-hide="!vm.currentUser" aria-label="Add"></button>
+    <button id="logoutButton" ng-click="vm.logout()"
+            ng-hide="!vm.currentUser" aria-label="Close Session">Log out</button>
 </header>
 
 
@@ -85,7 +85,6 @@
 
 <!-- Container for the list of reports -->
 <div ng-controller="ReportsController as reportsController" ng-cloak class="reports-list" style="overflow: auto;">
-
     <!-- List for the reports in a given area -->
     <md-grid-list
             md-cols-xs="2" md-cols-sm="2" md-cols-md="4" md-cols-gt-md="6"
@@ -101,6 +100,10 @@
         </md-grid-tile>
     </md-grid-list>
 
+    <!-- Fab button for adding a report -->
+    <md-button class="md-fab md-primary main-add-fab" aria-label="Add report" ng-click="vm.addReport()" ng-hide="vm.isReportDialogOpen || !vm.currentUser">
+        <md-icon md-svg-src="images/ic_add_white_24px.svg"></md-icon>
+    </md-button>
 </div>
 
 <!-- Setting the Firebase connection -->
