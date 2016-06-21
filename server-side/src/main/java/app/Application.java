@@ -1,3 +1,5 @@
+package app;
+
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
@@ -54,14 +56,29 @@ public class Application {
 
         System.out.println("Adding event listener.");
 
-        // Attach an listener to read the data at our posts reference
-        ref.addValueEventListener(new ValueEventListener() {
+        // https://www.firebase.com/docs/android/guide/retrieving-data.html
+        ref.child("reports").addChildEventListener(new ChildEventListener() {
+            // Retrieve new posts as they are added to the database
             @Override
-            public void onDataChange(DataSnapshot snapshot) {
-                System.out.println("*****\nNew data was:\n");
-                System.out.println(snapshot.getValue());
-                // TODO: We'd trigger the processing and push-notifications here
+            public void onChildAdded(DataSnapshot snapshot, String previousChildKey) {
+                Report newPost = snapshot.getValue(Report.class);
+                System.out.println("Author: " + newPost.getAuthorDisplayName());
+                System.out.println("Message: " + newPost.getDescription());
             }
+
+            @Override
+            public void onChildChanged(DataSnapshot snapshot, String reviousChildKey){
+                System.out.println("The child changed");
+            }
+            @Override
+            public void onChildRemoved(DataSnapshot snapshot){
+                System.out.println("The child removed");
+            }
+            @Override
+            public void onChildMoved(DataSnapshot snapshot, String previousChildKey){
+                System.out.println("The child moved");
+            }
+
             @Override
             public void onCancelled(FirebaseError firebaseError) {
                 System.out.println("The read failed: " + firebaseError.getMessage());
