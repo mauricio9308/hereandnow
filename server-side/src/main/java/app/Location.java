@@ -63,6 +63,7 @@ public class Location {
             System.out.println("Location 2: " + x + ":" + y);
             return true;
         }
+        System.out.println("Distance is: " + distance);
         System.out.println("Location is further than " + DEFAULT_THREASHOLD);
         System.out.println("Location 1: " + lat + ":" + lng);
         System.out.println("Location 2: " + x + ":" + y);
