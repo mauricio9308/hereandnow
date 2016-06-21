@@ -1,139 +1,152 @@
 <!DOCTYPE html>
 <html ng-app="alertSystem">
 <head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Here and Now</title>
-  <link rel="stylesheet" type="text/css" href="styles/inline.css">
-  <link rel="stylesheet" type="text/css" href="styles/styles.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Here and Now</title>
+    <meta name="theme-color" content="#009688">
+    <link rel="stylesheet" type="text/css" href="styles/inline.css">
+    <link rel="stylesheet" type="text/css" href="styles/styles.css">
 
-  <!-- Definition of the libraries css -->
-  <link rel="stylesheet" type="text/css" href="bower_components/angular-material/angular-material.min.css">
+    <!-- Definition of the libraries css -->
+    <link rel="stylesheet" type="text/css" href="bower_components/angular-material/angular-material.min.css">
 
-  <link rel="manifest" href="/manifest.json">
+    <link rel="manifest" href="/manifest.json">
 
-  <!-- Add to home screen for Safari on iOS -->
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black">
-  <meta name="apple-mobile-web-app-title" content="Alert System">
-  <link rel="apple-touch-icon" href="images/icons/icon-152x152.png">
-  <base href="/" />
+    <!-- Add to home screen for Safari on iOS -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="Alert System">
+    <link rel="apple-touch-icon" href="images/icons/icon-152x152.png">
+    <base href="/"/>
 
-  <meta name="msapplication-TileImage" content="images/icons/icon-144x144.png">
-  <meta name="msapplication-TileColor" content="#2F3BA2">
+    <meta name="msapplication-TileImage" content="images/icons/icon-144x144.png">
+    <meta name="msapplication-TileColor" content="#2F3BA2">
 </head>
 <body ng-controller="MainController as vm" ng-cloak>
 
 <header class="header">
-  <h1 class="header__title">Here and Now</h1>
-  <button id="logoutButton" ng-click="vm.logout()"
-          ng-hide="!vm.currentUser || vm.isReportDialogOpen" aria-label="Close Session">Log out</button>
-  <button id="loginButton" ng-click="vm.login()"
-          ng-hide="vm.currentUser || vm.isReportDialogOpen" aria-label="Log in">Log in</button>
+    <h1 class="header__title">Here and Now</h1>
+    <button id="logoutButton" ng-click="vm.logout()"
+            ng-hide="!vm.currentUser || vm.isReportDialogOpen" aria-label="Close Session">Log out
+    </button>
+    <button id="loginButton" ng-click="vm.login()"
+            ng-hide="vm.currentUser || vm.isReportDialogOpen" aria-label="Log in">Log in
+    </button>
 
 </header>
 
 
 <!-- Dialog for the report adding -->
 <div class="dialog-container" ng-controller="AddReportDialogController as dcontroller">
-  <div class="dialog">
-    <div class="dialog-title">Create Report</div>
-    <div class="dialog-body" layout="column">
-      <div layout="row" class="add-report-button-row">
-        <div md-ink-ripple class="alert-card" ng-click="dcontroller.createReport($event, 4)">
-          <img src="images/categories/danger.png">
-          <p>Danger</p>
+    <div class="dialog">
+        <div class="dialog-title">Create Report</div>
+        <div class="dialog-body" layout="column">
+            <div layout="row" class="add-report-button-row">
+                <div md-ink-ripple class="alert-card" ng-click="dcontroller.createReport($event, 4)">
+                    <img src="images/categories/danger.png">
+                    <p>Danger</p>
+                </div>
+                <div md-ink-ripple class="warning-card" ng-click="dcontroller.createReport($event, 3)">
+                    <img src="images/categories/caution.png">
+                    <p>Caution</p>
+                </div>
+            </div>
+            <div layout="row" class="add-report-button-row">
+                <div md-ink-ripple class="message-card" ng-click="dcontroller.createReport($event, 2)">
+                    <img src="images/categories/report.png">
+                    <p>Report</p>
+                </div>
+                <div md-ink-ripple class="lost-card" ng-click="dcontroller.createReport($event, 1)">
+                    <img src="images/categories/assist.png">
+                    <p>Assist</p>
+                </div>
+            </div>
         </div>
-        <div md-ink-ripple class="warning-card" ng-click="dcontroller.createReport($event, 3)">
-          <img src="images/categories/caution.png">
-          <p>Caution</p>
+        <div class="dialog-buttons">
+            <button id="butAddCancel" class="button" ng-click="dcontroller.cancelReportCreation()">Cancel</button>
         </div>
-      </div>
-      <div layout="row" class="add-report-button-row">
-        <div md-ink-ripple class="message-card" ng-click="dcontroller.createReport($event, 2)">
-          <img src="images/categories/report.png">
-          <p>Report</p>
-        </div>
-        <div md-ink-ripple class="lost-card" ng-click="dcontroller.createReport($event, 1)">
-          <img src="images/categories/assist.png">
-          <p>Assist</p>
-        </div>
-      </div>
     </div>
-    <div class="dialog-buttons">
-      <button id="butAddCancel" class="button" ng-click="dcontroller.cancelReportCreation()">Cancel</button>
-    </div>
-  </div>
 </div>
 
 <!-- Dialog for the login process -->
-<div class="login-container login-container--visible" ng-controller="LoginDialogController as loginController" ng-cloak style="display:none;" ng-style="loginController.loaded">
-  <div class="dialog">
-    <img src="images/logos/hereandnow.png" id="here-logo">
+<div class="login-container login-container--visible" ng-controller="LoginDialogController as loginController" ng-cloak
+     style="display:none;" ng-style="loginController.loaded">
+    <div class="dialog">
+        <img src="images/logos/hereandnow.png" id="here-logo">
 
-    <div class="dialog-body" layout="column">
-      <p class="main-login-title">Log in with:</p>
+        <div class="dialog-body" layout="column">
+            <p class="main-login-title">Log in with:</p>
 
-      <!-- Button for the Google Plus login access -->
-      <md-button class="md-raised md-primary" flex="100" ng-click="loginController.loginWithGooglePlus()">Google +</md-button>
+            <!-- Button for the Google Plus login access -->
+            <md-button class="md-raised md-primary" flex="100" ng-click="loginController.loginWithGooglePlus()">Google
+                +
+            </md-button>
 
-      <p class="main-login-title">Or</p>
+            <p class="main-login-title">Or</p>
 
-      <!-- Button for access without an account -->
-      <md-button class="md-raised" flex="100" ng-click="loginController.continueWithoutSession()">Continue without</md-button>
-      <span style="text-align: center;">You cannot post without an active session</span>
+            <!-- Button for access without an account -->
+            <md-button class="md-raised" flex="100" ng-click="loginController.continueWithoutSession()">Continue
+                without
+            </md-button>
+            <span style="text-align: center;">You cannot post without an active session</span>
 
-      <p class="login-error-message" ng-show="loginController.errorMessage">{{ loginController.errorMessage }}</p>
-      <p>By logging in to Here and Now you accept the <a href="index.html">terms and conditions.</a></p>
+            <p class="login-error-message" ng-show="loginController.errorMessage">{{ loginController.errorMessage }}</p>
+            <p>By logging in to Here and Now you accept the <a href="index.html">terms and conditions.</a></p>
+        </div>
     </div>
-  </div>
 </div>
 
 <!-- Loader element -->
 <div class="loader" ng-show="vm.isLoading">
-  <svg viewBox="0 0 32 32" width="32" height="32">
-    <circle id="spinner" cx="16" cy="16" r="14" fill="none"></circle>
-  </svg>
+    <svg viewBox="0 0 32 32" width="32" height="32">
+        <circle id="spinner" cx="16" cy="16" r="14" fill="none"></circle>
+    </svg>
 </div>
 
 <!-- Container for the list of reports -->
 <div ng-controller="ReportsController as reportsController" ng-cloak class="reports-list" style="overflow: auto;">
-  <!-- List for the reports in a given area -->
-  <md-grid-list
-          md-cols-xs="2" md-cols-sm="2" md-cols-md="4" md-cols-gt-md="6"
-          md-row-height-gt-md="1:1" md-row-height="1:1"
-          md-gutter="12px" md-gutter-gt-sm="8px" ng-style="{'margin-top': '65px', 'height' : ( vm.currentUser ? '80vh' : '90vh'), 'margin-bottom' : ( vm.currentUser ? '65px' : '0')}">
+    <!-- List for the reports in a given area -->
+    <md-grid-list
+            md-cols-xs="2" md-cols-sm="2" md-cols-md="4" md-cols-gt-md="6"
+            md-row-height-gt-md="1:1" md-row-height="1:1"
+            md-gutter="12px" md-gutter-gt-sm="8px"
+            ng-style="{'margin-top': '65px', 'height' : ( vm.currentUser ? '80vh' : '90vh'), 'margin-bottom' : ( vm.currentUser ? '65px' : '0')}">
 
-    <!-- Iteration of the cards for the reports in the application -->
-    <md-grid-tile ng-repeat="report in reportsController.reports"
-                  ng-style="{ 'background-color': reportsController.getReportColor( report )}" ng-click="reportsController.onReportClick( $event, report )">
-      <span id="report-description">{{ report.description }}</span>
-      <md-grid-tile-footer>
-        <h3>{{ reportsController.getReportCategory( report ) }}</h3>
-      </md-grid-tile-footer>
-    </md-grid-tile>
-  </md-grid-list>
+        <!-- Iteration of the cards for the reports in the application -->
+        <md-grid-tile ng-repeat="report in reportsController.reports"
+                      ng-class="{'tile-blur' : report.photoURL }"
+                      ng-style="{ 'background': reportsController.getReportColor( report ) }"
+                      ng-click="reportsController.onReportClick( $event, report )">
 
-  <!-- Fab button for adding a report -->
-  <md-button class="md-fab md-primary" aria-label="Add report" ng-click="vm.addReport()"
-             ng-class="{ 'main-add-fab-log-in': vm.currentUser, 'main-add-fab' : !vm.currentUser }"
-             ng-hide="vm.isReportDialogOpen">
-    <md-icon md-svg-src="images/ic_add_white_24px.svg"></md-icon>
-  </md-button>
+            <img ng-src="{{ report.photoURL }}" ng-hide="!report.photoURL" style="">
+            <span id="report-description">{{ report.description }}</span>
+            <md-grid-tile-footer ng-style="{ 'background': ( report.photoURL ? reportsController.getReportColor( report ) : '') }">
+                <h3>{{ reportsController.getReportCategory( report ) }}</h3>
+            </md-grid-tile-footer>
+        </md-grid-tile>
+    </md-grid-list>
+
+    <!-- Fab button for adding a report -->
+    <md-button class="md-fab md-primary" aria-label="Add report" ng-click="vm.addReport()"
+               ng-class="{ 'main-add-fab-log-in': vm.currentUser, 'main-add-fab' : !vm.currentUser }"
+               ng-hide="vm.isReportDialogOpen">
+        <md-icon md-svg-src="images/ic_add_white_24px.svg"></md-icon>
+    </md-button>
 </div>
 
 <div class="user-bar" style="bottom: 0; padding: 0; height: 68px;" ng-show="vm.currentUser">
-  <md-list style="margin: 0px; padding: 0px;">
-    <md-list-item class="md-2-line">
-      <img ng-src="{{ vm.currentUser.photoURL }}" class="md-avatar" alt="User photo" />
-      <div class="md-list-item-text">
-        <h3 style="color: white;">{{ vm.currentUser.displayName }}</h3>
-        <p style="color: white;">{{ vm.currentUser.email }}</p>
-      </div>
-    </md-list-item>
-  </md-list>
+    <md-list style="margin: 0px; padding: 0px;">
+        <md-list-item class="md-2-line">
+            <img ng-src="{{ vm.currentUser.photoURL }}" class="md-avatar" alt="User photo"/>
+            <div class="md-list-item-text">
+                <h3 style="color: white;">{{ vm.currentUser.displayName }}</h3>
+                <p style="color: white;">{{ vm.currentUser.email }}</p>
+            </div>
+        </md-list-item>
+    </md-list>
 </div>
 
 <!-- Setting the Firebase connection -->
