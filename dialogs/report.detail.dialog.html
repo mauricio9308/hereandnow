@@ -43,7 +43,7 @@
                     <div ng-show="vm.report.user">
                         <!-- Representation of a user object -->
                         <md-list>
-                            <md-list-item class="md-2-line">
+                            <md-list-item class="md-2-line" ng-click="vm.sendEmail( vm.report.user )">
                                 <img ng-src="{{ vm.report.user.photoURL }}" class="md-avatar" alt="User photo" />
                                 <div class="md-list-item-text">
                                     <h3>{{ vm.report.user.displayName }}</h3>
