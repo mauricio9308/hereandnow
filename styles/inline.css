@@ -614,3 +614,14 @@ p.login-error-message {
 .tile-blur #report-description {
     color: white;
 }
+
+.center-loading-container{
+    position: relative;
+    transform: translateY(100%);
+    text-align: center;
+}
+
+.center-loading-container md-progress-circular{
+    margin: 0 auto;
+    text-align: center;
+}
