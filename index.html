@@ -122,7 +122,7 @@
                       ng-click="reportsController.onReportClick( $event, report )">
 
             <img ng-src="{{ report.photoURL }}" ng-hide="!report.photoURL" style="">
-            <span id="report-description">{{ report.description }}</span>
+            <span id="report-description">{{ reportsController.getReportDescription( report ) }}</span>
             <md-grid-tile-footer ng-style="{ 'background': ( report.photoURL ? reportsController.getReportColor( report ) : '') }">
                 <h3>{{ reportsController.getReportCategory( report ) }}</h3>
             </md-grid-tile-footer>
