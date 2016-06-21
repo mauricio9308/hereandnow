@@ -7,11 +7,11 @@
     angular.module('alertSystem').factory('GoogleLoginService', GoogleLoginService);
 
     //Declaration of the factory
-    GoogleLoginService.$inject = ['$q', '$localStorage', '$firebaseAuth'];
+    GoogleLoginService.$inject = ['$q', '$localStorage', '$firebaseAuth', 'LocationWatcher'];
     /**
      * Service in charge of the Google Login Management
      * */
-    function GoogleLoginService($q, $localStorage, $firebaseAuth) {
+    function GoogleLoginService($q, $localStorage, $firebaseAuth, LocationWatcher) {
         var fbAuth = $firebaseAuth();
 
         // Public API
@@ -32,10 +32,20 @@
                     //We store the user information
                     $localStorage.user = {
                         displayName: authData.user.displayName,
-                        email: authData.email,
-                        photoURL: authData.photoURL,
-                        uid: authData.uid
+                        email: authData.user.email,
+                        photoURL: authData.user.photoURL,
+                        uid: authData.user.uid
                     };
+
+                    var ref = firebase.database().ref('/users/' + $localStorage.user.uid)
+                    ref.on("value", function(snapshot) {
+                        if (snapshot.val() == null) {
+                            firebase.database().ref("/users/" + $localStorage.user.uid).set($localStorage.user);
+                        }
+                        LocationWatcher.bindLocationUpdate();
+                    }, function (errorObject) {
+                        console.log("FATAL: The read failed: " + errorObject.code);
+                    });
 
                     return authData;
                 }).catch(function (error) {
