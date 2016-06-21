@@ -7,11 +7,11 @@
     angular.module('alertSystem').factory('GoogleLoginService', GoogleLoginService);
 
     //Declaration of the factory
-    GoogleLoginService.$inject = ['$q', '$localStorage', '$firebaseAuth', 'LocationWatcher'];
+    GoogleLoginService.$inject = ['$q', '$localStorage', '$firebaseAuth', 'LocationWatcher', '$rootScope', 'NotificationsService'];
     /**
      * Service in charge of the Google Login Management
      * */
-    function GoogleLoginService($q, $localStorage, $firebaseAuth, LocationWatcher) {
+    function GoogleLoginService($q, $localStorage, $firebaseAuth, LocationWatcher, $rootScope, NotificationsService) {
         var fbAuth = $firebaseAuth();
 
         // Public API
@@ -37,11 +37,27 @@
                         uid: authData.user.uid
                     };
 
-                    var ref = firebase.database().ref('/users/' + $localStorage.user.uid)
+
+                    NotificationsService.promiseToHaveSubscriberId.then(function (subscriberId) {
+                        firebase.database().ref("/users/" + $localStorage.user.uid + "/subscriberID/").set(subscriberId);
+                    });
+
+
+                    var ref = firebase.database().ref('/users/' + $localStorage.user.uid);
                     ref.on("value", function(snapshot) {
                         if (snapshot.val() == null) {
-                            firebase.database().ref("/users/" + $localStorage.user.uid).set($localStorage.user);
+                            var values = {
+                                displayName: $localStorage.user.displayName,
+                                email: $localStorage.user.email,
+                                photoURL: $localStorage.user.photoURL
+                            };
+
+                            firebase.database().ref("/users/" + $localStorage.user.uid).set(values)
                         }
+
+                        /* broadcast the user update */
+                        $rootScope.$emit('UserAuthenticationChanged');
+
                         LocationWatcher.bindLocationUpdate();
                     }, function (errorObject) {
                         console.log("FATAL: The read failed: " + errorObject.code);
@@ -63,6 +79,23 @@
 
             /* we destroy any reference of the user */
             $localStorage.$reset();
+
+            /* we delete any firebase reference */
+            firebase.auth().signOut().then(function() {
+                // Sign-out successful.
+
+                /* broadcast the user update */
+                $rootScope.$emit('UserAuthenticationChanged');
+
+                //Resolving the promise
+                logoutDefer.resolve();
+            }, function(error) {
+
+                // An error happened.
+                logoutDefer.reject();
+            });
+
+            return logoutDefer.promise;
         }
     }
 

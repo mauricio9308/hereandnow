@@ -19,25 +19,25 @@
             getLevelColor : function( level ){
                 switch( level ){
                     case LEVEL_LOST:
-                        return '#3f51b5';
+                        return '#326BAB';
                     case LEVEL_MESSAGE:
-                        return '#b9f6ca';
+                        return '#3F9848';
                     case LEVEL_WARNING:
-                        return '#ffff8d';
+                        return '#E5B340';
                     case LEVEL_ALERT:
-                        return '#CD5C5C'
+                        return '#C33E38'
                 }
             },
             getLevelName : function( level ){
                 switch( level ){
                     case LEVEL_LOST:
-                        return 'Lost';
+                        return 'Assist';
                     case LEVEL_MESSAGE:
-                        return 'Message';
+                        return 'Report';
                     case LEVEL_WARNING:
-                        return 'Warning';
+                        return 'Caution';
                     case LEVEL_ALERT:
-                        return 'Alert'
+                        return 'Danger'
                 }
             }
         }

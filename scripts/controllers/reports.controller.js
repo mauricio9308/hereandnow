@@ -5,24 +5,15 @@
 
     angular.module('alertSystem').controller('ReportsController', ReportsController);
 
-    ReportsController.$inject = ['LevelColorsService'];
+    ReportsController.$inject = ['LevelColorsService', '$mdDialog', '$firebaseArray', '$mdMedia'];
 
-    function ReportsController(LevelColorsService) {
+    function ReportsController(LevelColorsService, $mdDialog, $firebaseArray, $mdMedia) {
         var vm = this;
 
         function load(){
-            /* mock objects for the display of the alerts */
-            vm.reports = [
-                {
-                    authorUid: 123,
-                    date: "2016-06-10",
-                    description: "An event ocurred",
-                    isAnonymous : false,
-                    level: 1,
-                    longitude: 20,
-                    latitude: 20
-                }
-            ];
+            //Setting the reference for the reports reference
+            var reportsReference = firebase.database().ref().child('reports');
+            vm.reports = $firebaseArray(reportsReference);
 
             /* we add the color parsing to each of the objects */
             for( var i = 0, total = vm.reports.length; i < total; i ++ ){
@@ -31,12 +22,56 @@
                 vm.reports[i].color = LevelColorsService.getLevelColor( reportLevel );
                 vm.reports[i].levelName = LevelColorsService.getLevelName( reportLevel );
             }
-
-            console.log( vm.reports );
-            console.log( vm.reports.length );
         }
-
         load();
-    }
 
-}(firebase));
+        /**
+         * Getting the report color for the event
+         * */
+        vm.getReportColor = function( report ){
+            return LevelColorsService.getLevelColor( report.level );
+        };
+
+        /**
+         * Getting the report color for the event
+         * */
+        vm.getReportPhotoStyle = function( report ){
+            return 'url(' + report.photoURL +')';
+        };
+
+        /**
+         * Obtain the given report description
+         * */
+        vm.getReportDescription = function( report ){
+            return ( report.description.length >= 50 ? report.substring(0, 50) + '...' : report.description );
+        };
+
+        /**
+         * Getting the report level name for the event
+         * */
+        vm.getReportCategory = function( report ){
+            return LevelColorsService.getLevelName( report.level );
+        };
+
+        /**
+         * Callback function for the click on a given report
+         * */
+        vm.onReportClick = function( ev, report ){
+            var useFullScreen = ($mdMedia('sm') || $mdMedia('xs') || $mdMedia('md'));
+
+            /* create a dialog for the creation of a report */
+            $mdDialog.show({
+                controller: 'ReportDetailDialogController as vm',
+                templateUrl: 'dialogs/report.detail.dialog.html',
+                parent: angular.element(document.body),
+                targetEvent: ev,
+                locals: {
+                    report: report
+                },
+                clickOutsideToClose: false,
+                fullscreen: useFullScreen
+            });
+        };
+
+    }
+}(firebase))
