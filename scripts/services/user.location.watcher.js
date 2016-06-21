@@ -21,8 +21,7 @@
 					var userID = $localStorage.user.uid;
 					firebase.database().ref("/users/" + userID + "/location/").set({
 						lat: position.coords.latitude,
-						lng: position.coords.longitude,
-						geohash: encodeGeoHash(position.coords.latitude, position.coords.longitude)
+						lng: position.coords.longitude
 					});
 				}else{
 					alert('Firebase not set');
