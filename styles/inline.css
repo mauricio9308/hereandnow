@@ -42,13 +42,14 @@ body {
           align-content: stretch;
   background: #ececec; }
 
-.header {
+.header,
+.user-bar{
   width: 100%;
   height: 56px;
   color: #FFF;
-  background: #D32F2F;
+  background: #009688;
   position: fixed;
-  font-size: 20px;
+  /*font-size: 20px;*/
   box-shadow: 0 4px 5px 0 rgba(0, 0, 0, 0.14), 0 2px 9px 1px rgba(0, 0, 0, 0.12), 0 4px 2px -2px rgba(0, 0, 0, 0.2);
   padding: 16px 16px 0 16px;
   will-change: transform;
@@ -80,22 +81,6 @@ body {
   transition: transform 0.233s cubic-bezier(0, 0, 0.21, 1) 0.1s;
   transition: transform 0.233s cubic-bezier(0, 0, 0.21, 1) 0.1s, -webkit-transform 0.233s cubic-bezier(0, 0, 0.21, 1) 0.1s;
   z-index: 1000; }
-  .header .headerButton {
-    width: 24px;
-    height: 24px;
-    margin-right: 16px;
-    text-indent: -30000px;
-    overflow: hidden;
-    opacity: 0.54;
-    -webkit-transition: opacity 0.333s cubic-bezier(0, 0, 0.21, 1);
-    transition: opacity 0.333s cubic-bezier(0, 0, 0.21, 1);
-    border: none;
-    outline: none;
-    cursor: pointer; }
-  .header #butRefresh {
-    background: url(/images/ic_refresh_white_24px.svg) center center no-repeat; }
-  .header #butAdd {
-    background: url(/images/ic_add_white_24px.svg) center center no-repeat; }
 
 .header__title {
   font-weight: 400;
@@ -114,7 +99,7 @@ body {
           transform: translate(-50%, -50%); }
   .loader #spinner {
     box-sizing: border-box;
-    stroke: #D32F2F;
+    stroke: #009688;
     stroke-width: 3px;
     -webkit-transform-origin: 50%;
             transform-origin: 50%;
@@ -193,7 +178,7 @@ body {
 .login-container--visible{
   opacity: 1;
   pointer-events: auto;
-  z-index: 1; /* Setting the dialog as an overlay */
+  z-index: 999999; /* Setting the dialog as an overlay */
 }
 
 p.login-error-message{
@@ -414,19 +399,19 @@ p.login-error-message{
 }
 
 .lost-card{
-    background-color: #3f51b5;
+    background-color: #326BAB;
 }
 
 .alert-card{
-    background-color: #cd5c5c;
+    background-color: #C33E38;
 }
 
 .warning-card{
-    background-color: #ffff8d;
+    background-color: #E5B340;
 }
 
 .message-card{
-    background-color: #b9f6ca;
+    background-color: #3F9848;
 }
 
 .add-report-button-row{
@@ -447,4 +432,39 @@ p.login-error-message{
     display: block;
     position: relative;
     margin: 4px;
+    color: white;
+}
+
+.main-add-fab{
+    position: fixed !important;
+    bottom: 16px !important;
+    right: 16px !important;
+}
+
+.main-add-fab-log-in{
+    position: fixed !important;
+    bottom: 65px !important;
+    right: 16px !important;
+}
+
+#logoutButton,
+#loginButton{
+    font-weight: bold;
+    color: white;
+    margin-bottom: 20px;
+}
+
+#report-description{
+    transform: translateY(-50%);
+    -webkit-transform: translateY(-50%);
+    -moz-transform: translateY(-50%);
+}
+
+.main-login-title{
+    text-align: center;
+}
+
+#here-logo{
+    width: 100%;
+    padding: 16px 16px 0 16px;
 }
