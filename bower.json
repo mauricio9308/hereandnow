@@ -22,5 +22,10 @@
     "bower_components",
     "test",
     "tests"
-  ]
+  ],
+  "dependencies": {
+    "ngstorage": "0.3.10",
+    "angular": "^1.5.7",
+    "angular-material": "^1.0.9"
+  }
 }
