@@ -5,9 +5,9 @@
 
     angular.module('alertSystem').controller('ReportsController', ReportsController);
 
-    ReportsController.$inject = ['LevelColorsService'];
+    ReportsController.$inject = ['LevelColorsService', '$mdDialog'];
 
-    function ReportsController(LevelColorsService) {
+    function ReportsController(LevelColorsService, $mdDialog) {
         var vm = this;
 
         function load(){
@@ -37,6 +37,26 @@
         }
 
         load();
+
+        /**
+         * Callback function for the click on a given report
+         * */
+        vm.onReportClick = function( ev, report ){
+            console.log('click on report: ' + JSON.stringify( report ));
+
+            /* create a dialog for the creation of a report */
+            $mdDialog.show({
+                controller: 'ReportDetailDialogController as vm',
+                templateUrl: 'dialogs/report.detail.dialog.html',
+                parent: angular.element(document.body),
+                targetEvent: ev,
+                locals: {
+                    report: report
+                },
+                clickOutsideToClose: false,
+                fullscreen: false
+            });
+        };
     }
 
 }(firebase));

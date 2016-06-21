@@ -1,0 +1,52 @@
+<md-dialog aria-label="Reporte" ng-cloak>
+
+    <!-- Container for the progress state -->
+    <div layout="row" layout-sm="column" layout-align="space-around" ng-show="vm.isLoading" >
+        <md-progress-circular md-mode="indeterminate" md-diameter="100px"></md-progress-circular>
+    </div>
+
+    <!-- Container for the form input -->
+    <div ng-hide="vm.isLoading">
+        <md-toolbar ng-style="{ 'background-color': vm.getReportLevelColor() }">
+            <div class="md-toolbar-tools">
+                <h2>Report</h2>
+                <span flex></span>
+                <md-button class="md-icon-button" ng-click="vm.cancel()">
+                    <md-icon md-svg-src="images/close_white.svg" aria-label="Close dialog"></md-icon>
+                </md-button>
+            </div>
+        </md-toolbar>
+        <md-dialog-content>
+            <div class="md-dialog-content">
+                <!-- Category information -->
+                <strong>Category</strong>
+                <br>
+                <label>{{ vm.getReportLevelName() }}</label>
+                <br><br>
+
+                <!-- Description information -->
+                <strong>Description</strong>
+                <br>
+                <label>{{ vm.report.description }}</label>
+                <br><br>
+
+                <!-- Date information -->
+                <strong>Description</strong>
+                <br>
+                <label>{{ vm.report.date | date }}</label>
+                <br><br>
+
+                <!-- Information of the user -->
+                <div>
+                    <strong>Reporter</strong>
+                    <br>
+                    <label>{{ (!vm.report.user || vm.report.user.isAnonymous) ? 'Anonymous' : vm.report.displayName  }}</label>
+                </div>
+                <br>
+
+                <!-- Location information -->
+                <img ng-src="{{ vm.getMapUrl() }}" style="margin-top: 20px; width: 100%;height: 150px;">
+            </div>
+        </md-dialog-content>
+    </div>
+</md-dialog>

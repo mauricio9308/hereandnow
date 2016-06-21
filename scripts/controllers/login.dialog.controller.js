@@ -18,6 +18,8 @@
         //Error message if any
         vm.errorMessage = undefined;
 
+        vm.loaded ={display:'block'};
+
         /**
          * Triggers the login process for the application
          * */

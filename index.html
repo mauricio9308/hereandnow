@@ -61,7 +61,7 @@
 </div>
 
 <!-- Dialog for the login process -->
-<div class="login-container login-container--visible" ng-controller="LoginDialogController as loginController">
+<div class="login-container login-container--visible" ng-controller="LoginDialogController as loginController" ng-cloak style="display:none;" ng-style="loginController.loaded">
     <div class="dialog">
         <div class="dialog-title">Welcome to Here and Now!</div>
         <div class="dialog-body" layout="column">
@@ -93,7 +93,7 @@
 
         <!-- Iteration of the cards for the reports in the application -->
         <md-grid-tile ng-repeat="report in reportsController.reports"
-                      ng-style="{ 'background-color': report.color}">
+                      ng-style="{ 'background-color': report.color}" ng-click="reportsController.onReportClick( $event, report )">
             <md-grid-tile-footer>
                 <h3>{{ report.levelName }} {{ report.level }}</h3>
             </md-grid-tile-footer>
@@ -142,6 +142,7 @@
 <script src="scripts/controllers/main.controller.js"></script>
 <script src="scripts/controllers/build.report.dialog.controller.js"></script>
 <script src="scripts/controllers/reports.controller.js"></script>
+<script src="scripts/controllers/report.detail.dialog.controller.js"></script>
 <script src="scripts/controllers/add.report.dialog.controller.js"></script>
 <script src="scripts/services/user.location.watcher.js"></script>
 <script src="scripts/controllers/login.dialog.controller.js"></script>
