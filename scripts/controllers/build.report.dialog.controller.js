@@ -20,14 +20,13 @@
 
         //Loading flag
         vm.isLoading = false;
+        vm.event = event;
 
         // Setting the report information holder
         vm.report = {
             //We make only level 2 or less alert kinds public by default (Message and lost)
             isAnonymous : ( level <= 2 ? false : true )
         };
-
-        console.log('passed event: ' + event);
 
         /**
          * Getting the reference of the given report level
@@ -64,9 +63,17 @@
                         description: vm.report.description,
                         isAnonymous: vm.report.isAnonymous,
                         level: level,
-                        latitude: position.coords.latitude,
-                        longitude: position.coords.longitude,
+                        location: {
+                            lat: position.coords.latitude,
+                            lng: position.coords.longitude,
+                            geohash: encodeGeoHash(position.coords.latitude, position.coords.longitude)
+                        }
                     };
+
+                    if(event){
+                        userData['event'] = event;
+                    }
+
                     if (photoURL){
                       userData['photoURL'] = photoURL
                     }

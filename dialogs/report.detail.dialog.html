@@ -12,7 +12,7 @@
     <div ng-hide="vm.isLoading">
         <md-toolbar ng-style="{ 'background-color': vm.getReportLevelColor() }">
             <div class="md-toolbar-tools">
-                <h2>Report</h2>
+                <h2>{{ vm.getReportLevelName() }} {{ vm.getReportLevelName() === 'Report' ? '' : 'Message'}}</h2>
                 <span flex></span>
                 <md-button class="md-icon-button" ng-click="vm.cancel()">
                     <md-icon md-svg-src="images/close_white.svg" aria-label="Close dialog"></md-icon>
@@ -21,11 +21,13 @@
         </md-toolbar>
         <md-dialog-content>
             <div class="md-dialog-content">
-                <!-- Category information -->
-                <strong>Category</strong>
-                <br>
-                <label>{{ vm.getReportLevelName() }}</label>
-                <br><br>
+                <!-- Description information -->
+                <div ng-show="vm.report.event">
+                    <strong>Event</strong>
+                    <br>
+                    <label>{{ vm.report.event }}</label>
+                    <br><br>
+                </div>
 
                 <!-- Description information -->
                 <strong>Description</strong>
@@ -37,13 +39,15 @@
                 <strong>Date</strong>
                 <br>
                 <label>{{ vm.report.date | date }}</label>
-                <br><br>
+                <br>
 
                 <div ng-hide="!vm.report.photoURL">
                     <strong>Image</strong>
                     <br>
                     <a href="{{ vm.report.photoURL }}" target="_blank">
-                        <img src="{{ vm.report.photoURL }}" style="width: 250px; height: 150px"/>
+                        <div class="image-wrap" id="wrapper">
+                            <img src="{{ vm.report.photoURL }}"/>
+                        </div>
                     </a>
                 </div>
                 <br>
@@ -65,16 +69,27 @@
                         </md-list>
                     </div>
                     <div ng-show="!vm.report.user || vm.report.isAnonymous">
-                        <span>{{ vm.report.isAnonymous ? 'Anonymous reporter' :
-                            'Error getting the user info'}}</span>
+                        <!-- Representation of a missing user report -->
+                        <md-list>
+                            <md-list-item class="md-2-line">
+                                <img src="../images/anonymous.png" class="md-avatar" alt="User photo" />
+                                <div class="md-list-item-text">
+                                    <h3>{{ vm.report.isAnonymous ? 'Anonymous reporter' : 'Error getting the user info'}}</h3>
+                                    <p></p>
+                                </div>
+                            </md-list-item>
+                        </md-list>
                     </div>
                 </div>
-                <br><br>
+                <br>
 
                 <!-- Location information -->
                 <strong>Location</strong>
                 <br>
-                <img ng-src="{{ vm.getMapUrl() }}" style="margin-top: 20px; width: 100%;height: 150px;">
+
+                <div class="image-wrap" id="wrapper">
+                    <img ng-src="{{ vm.getMapUrl() }}">
+                </div>
             </div>
         </md-dialog-content>
     </div>

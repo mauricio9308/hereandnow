@@ -16,6 +16,7 @@
 
         //Flag for the report dialog open
         vm.isReportDialogOpen = ( !$localStorage.user );
+        vm.isLoading = true;
 
         /* callback functions for the main toolbar actions */
         vm.addReport = function(){
@@ -82,6 +83,10 @@
         });
         $rootScope.$on('toggleReportDialog', function( event, isShowing ){
             vm.isReportDialogOpen = isShowing;
+        });
+
+        $rootScope.$on('isLoading', function( event, isLoading ){
+            vm.isLoading = isLoading;
         });
 
 

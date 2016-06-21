@@ -8,12 +8,12 @@
     angular.module('alertSystem').controller('SelectEventReportController', SelectEventReportController);
 
     /* injecting the dependencies */
-    SelectEventReportController.$inject = ['$mdDialog', '$scope', '$mdMedia', 'level', '$rootScope'];
+    SelectEventReportController.$inject = ['$mdDialog', '$scope', '$mdMedia', 'level', '$rootScope', 'LevelColorsService'];
 
     /**
      * Controller for adding a given report to the actual location
      * */
-    function SelectEventReportController($mdDialog, $scope, $mdMedia, level, $rootScope) {
+    function SelectEventReportController($mdDialog, $scope, $mdMedia, level, $rootScope, LevelColorsService) {
         var vm = this;
 
         /* holders for the selections */
@@ -22,6 +22,13 @@
 
         //Holder for the level reference
         vm.level = level;
+
+        /**
+         * Getting the reference of the given report level color
+         * */
+        vm.getReportLevelColor = function(){
+            return LevelColorsService.getLevelColor( level );
+        };
 
         /**
          * Callback for the pass of the next step of the report creation

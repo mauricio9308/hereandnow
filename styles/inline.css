@@ -217,7 +217,7 @@ p.login-error-message {
     min-width: 280px;
     position: absolute;
     left: 50%;
-    top: 50%;
+    top: 45%;
     -webkit-transform: translate(-50%, -50%) translateY(30px);
     transform: translate(-50%, -50%) translateY(30px);
     -webkit-transition: -webkit-transform 0.333s cubic-bezier(0, 0, 0.21, 1) 0.05s;
@@ -259,175 +259,6 @@ p.login-error-message {
     border-radius: 2px;
     margin: 16px;
     box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 1px 5px 0 rgba(0, 0, 0, 0.12);
-}
-
-.weather-forecast .location {
-    font-size: 1.75em;
-}
-
-.weather-forecast .date, .weather-forecast .description {
-    font-size: 1.25em;
-}
-
-.weather-forecast .current {
-    display: -webkit-box;
-    display: -webkit-flex;
-    display: -ms-flexbox;
-    display: flex;
-}
-
-.weather-forecast .current .icon {
-    width: 128px;
-    height: 128px;
-}
-
-.weather-forecast .current .visual {
-    display: -webkit-box;
-    display: -webkit-flex;
-    display: -ms-flexbox;
-    display: flex;
-    font-size: 4em;
-}
-
-.weather-forecast .current .visual .scale {
-    font-size: 0.5em;
-    vertical-align: super;
-}
-
-.weather-forecast .current .visual, .weather-forecast .current .description {
-    -webkit-box-flex: 1;
-    -webkit-flex-grow: 1;
-    -ms-flex-positive: 1;
-    flex-grow: 1;
-}
-
-.weather-forecast .current .feels-like:before {
-    content: "Feels like: ";
-    color: #888;
-}
-
-.weather-forecast .current .wind:before {
-    content: "Wind: ";
-    color: #888;
-}
-
-.weather-forecast .current .precip:before {
-    content: "Precipitation: ";
-    color: #888;
-}
-
-.weather-forecast .current .humidity:before {
-    content: "Humidity: ";
-    color: #888;
-}
-
-.weather-forecast .current .pollen:before {
-    content: "Pollen Count: ";
-    color: #888;
-}
-
-.weather-forecast .current .pcount:before {
-    content: "Pollen ";
-    color: #888;
-}
-
-.weather-forecast .future {
-    display: -webkit-box;
-    display: -webkit-flex;
-    display: -ms-flexbox;
-    display: flex;
-}
-
-.weather-forecast .future .oneday {
-    -webkit-box-flex: 1;
-    -webkit-flex-grow: 1;
-    -ms-flex-positive: 1;
-    flex-grow: 1;
-    text-align: center;
-}
-
-.weather-forecast .future .oneday .icon {
-    width: 64px;
-    height: 64px;
-    margin-left: auto;
-    margin-right: auto;
-}
-
-.weather-forecast .future .oneday .temp-high, .weather-forecast .future .oneday .temp-low {
-    display: inline-block;
-}
-
-.weather-forecast .future .oneday .temp-low {
-    color: #888;
-}
-
-.weather-forecast .icon {
-    background-repeat: no-repeat;
-    background-size: contain;
-}
-
-.weather-forecast .icon.clear-day {
-    background-image: url("/images/clear.png");
-}
-
-.weather-forecast .icon.clear-night {
-    background-image: url("/images/clear.png");
-}
-
-.weather-forecast .icon.rain {
-    background-image: url("/images/rain.png");
-}
-
-.weather-forecast .icon.snow {
-    background-image: url("/images/snow.png");
-}
-
-.weather-forecast .icon.sleet {
-    background-image: url("/images/sleet.png");
-}
-
-.weather-forecast .icon.wind {
-    background-image: url("/images/wind.png");
-}
-
-.weather-forecast .icon.fog {
-    background-image: url("/images/fog.png");
-}
-
-.weather-forecast .icon.cloudy {
-    background-image: url("/images/cloudy.png");
-}
-
-.weather-forecast .icon.partly-cloudy-day {
-    background-image: url("/images/partly-cloudy.png");
-}
-
-.weather-forecast .icon.partly-cloudy-night {
-    background-image: url("/images/partly-cloudy.png");
-}
-
-.weather-forecast .icon.thunderstorms {
-    background-image: url("/images/thunderstorms.png");
-}
-
-@media (max-width: 450px) {
-    .weather-forecast .date, .weather-forecast .description {
-        font-size: 0.9em;
-    }
-
-    .weather-forecast .current .icon {
-        width: 96px;
-        height: 96px;
-    }
-
-    .weather-forecast .current .visual {
-        font-size: 3em;
-    }
-
-    .weather-forecast .future .oneday .icon {
-        width: 32px;
-        height: 32px;
-    }
 }
 
 .mdl-button {
@@ -585,6 +416,7 @@ p.login-error-message {
     transform: translateY(-50%);
     -webkit-transform: translateY(-50%);
     -moz-transform: translateY(-50%);
+    color: white;
 }
 
 .main-login-title {
@@ -609,6 +441,8 @@ p.login-error-message {
     width: 100%;
     height: 100%;
     position: absolute;
+    top: 0;
+    left: 0;
 }
 
 .tile-blur #report-description {
@@ -624,4 +458,27 @@ p.login-error-message {
 .center-loading-container md-progress-circular{
     margin: 0 auto;
     text-align: center;
+}
+.image-wrap {
+    max-height: 450px;
+    overflow: hidden;
+    max-width: 800px;       
+    -webkit-transition: max-width .5s ease-out;  /* Saf3.2+, Chrome */
+    -moz-transition: max-width .5s ease-out;  /* FF4+ */
+    -ms-transition: max-width .5s ease-out;  /* IE10? */
+    -o-transition: max-width .5s ease-out;  /* Opera 10.5+ */
+    transition: max-width .5s ease-out;
+}
+ 
+    .image-wrap img {
+        width: 100%;
+        -webkit-transition: margin-top .5s ease-out;  /* Saf3.2+, Chrome */
+        -moz-transition: margin-top .5s ease-out;  /* FF4+ */
+        -ms-transition: margin-top .5s ease-out;  /* IE10? */
+        -o-transition: margin-top .5s ease-out;  /* Opera 10.5+ */
+        transition: margin-top .5s ease-out;
+    }
+     
+@media only screen and (min-width: 1160px) {
+    .image-wrap { max-width: 1000px; }
 }
