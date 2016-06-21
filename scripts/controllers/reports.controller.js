@@ -32,6 +32,19 @@
             return LevelColorsService.getLevelColor( report.level );
         };
 
+        /**
+         * Getting the report color for the event
+         * */
+        vm.getReportPhotoStyle = function( report ){
+            return 'url(' + report.photoURL +')';
+        };
+
+        /**
+         * Obtain the given report description
+         * */
+        vm.getReportDescription = function( report ){
+            return ( report.description.length >= 50 ? report.substring(0, 50) + '...' : report.description );
+        };
 
         /**
          * Getting the report level name for the event

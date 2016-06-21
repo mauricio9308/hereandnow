@@ -1,8 +1,11 @@
 <md-dialog aria-label="Reporte" ng-cloak style="z-index: 99999;">
 
     <!-- Container for the progress state -->
-    <div layout="row" layout-sm="column" layout-align="space-around" ng-show="vm.isLoading" >
+    <div layout="column" layout-sm="column" layout-align="space-around" ng-show="vm.isLoading"
+         class="center-loading-container">
         <md-progress-circular md-mode="indeterminate" md-diameter="100px"></md-progress-circular>
+        <br>
+        <h2>Fetching report data...</h2>
     </div>
 
     <!-- Container for the form input -->
@@ -66,8 +69,11 @@
                             'Error getting the user info'}}</span>
                     </div>
                 </div>
+                <br><br>
 
                 <!-- Location information -->
+                <strong>Location</strong>
+                <br>
                 <img ng-src="{{ vm.getMapUrl() }}" style="margin-top: 20px; width: 100%;height: 150px;">
             </div>
         </md-dialog-content>

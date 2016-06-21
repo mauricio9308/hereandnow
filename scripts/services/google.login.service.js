@@ -7,11 +7,11 @@
     angular.module('alertSystem').factory('GoogleLoginService', GoogleLoginService);
 
     //Declaration of the factory
-    GoogleLoginService.$inject = ['$q', '$localStorage', '$firebaseAuth', 'LocationWatcher', '$rootScope'];
+    GoogleLoginService.$inject = ['$q', '$localStorage', '$firebaseAuth', 'LocationWatcher', '$rootScope', 'NotificationsService'];
     /**
      * Service in charge of the Google Login Management
      * */
-    function GoogleLoginService($q, $localStorage, $firebaseAuth, LocationWatcher, $rootScope) {
+    function GoogleLoginService($q, $localStorage, $firebaseAuth, LocationWatcher, $rootScope, NotificationsService) {
         var fbAuth = $firebaseAuth();
 
         // Public API
@@ -37,15 +37,21 @@
                         uid: authData.user.uid
                     };
 
+
+                    NotificationsService.promiseToHaveSubscriberId.then(function (subscriberId) {
+                        firebase.database().ref("/users/" + $localStorage.user.uid + "/subscriberID/").set(subscriberId);
+                    });
+
+
                     var ref = firebase.database().ref('/users/' + $localStorage.user.uid);
                     ref.on("value", function(snapshot) {
                         if (snapshot.val() == null) {
                             var values = {
                                 displayName: $localStorage.user.displayName,
                                 email: $localStorage.user.email,
-                                photoURL: $localStorage.user.photoURL,
+                                photoURL: $localStorage.user.photoURL
                             };
-                            values.suscriberID = ""
+
                             firebase.database().ref("/users/" + $localStorage.user.uid).set(values)
                         }
 
