@@ -11,7 +11,7 @@ public class Location {
 
     public Point2D getPoint() {
         if(point==null){
-            setThePonintLocation();
+            setThePointLocation();
         }
         return point;
     }
@@ -32,12 +32,12 @@ public class Location {
         this.lat = lat;
         this.lng = lng;
 
-        setThePonintLocation();
+        setThePointLocation();
 
         this.geohash = geohash;
     }
 
-    private void setThePonintLocation() {
+    private void setThePointLocation() {
         this.point = new Point2D.Double(lat,lng);
     }
 
