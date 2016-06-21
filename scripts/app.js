@@ -24,15 +24,6 @@
     $mdThemingProvider.theme('default').primaryPalette('red');
   }
 
-  var app = {
-    hasRequestPending: false,
-    isLoading: true,
-    visibleCards: {},
-    selectedCities: [],
-    spinner: document.querySelector('.loader'),
-    cardTemplate: document.querySelector('.cardTemplate'),
-    container: document.querySelector('.main')
-  };
   
   applicationRunFunction.$inject = ['NotificationsService'];
 
