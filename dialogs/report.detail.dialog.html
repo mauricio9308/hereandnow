@@ -28,11 +28,12 @@
                 <br><br>
 
                 <!-- Description information -->
-                <strong>Event</strong>
-                <br>
-                <label>{{ vm.report.event }}</label>
-                <br><br>
-
+                <div ng-show="vm.report.event">
+                    <strong>Event</strong>
+                    <br>
+                    <label>{{ vm.report.event }}</label>
+                    <br><br>
+                </div>
 
                 <!-- Description information -->
                 <strong>Description</strong>
