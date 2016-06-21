@@ -15,6 +15,7 @@ public class FirebaseRunner {
     private final Firebase ref = new Firebase("https://alertsystem-9f7a1.firebaseio.com/");
     private final Set<User> users = new HashSet<User>();
     private final Date serverStarted = new Date();
+    private final GoogleCloudMessangerHelper gcmHelper = new GoogleCloudMessangerHelper();
 
     public FirebaseRunner() {
         System.out.println("Initializing FirebaseRunner.");
@@ -29,7 +30,6 @@ public class FirebaseRunner {
         payload.put("data", "here");
         TokenGenerator tokenGenerator = new TokenGenerator(fireBaseSecret);
         String token = tokenGenerator.createToken(payload);
-
 
         ref.authWithCustomToken(token, new Firebase.AuthResultHandler() {
             @Override
@@ -75,8 +75,11 @@ public class FirebaseRunner {
                     System.out.println("Local users: " + localUsers.size());
                     System.out.println("Done processing report");
 
-                    // TODO: Trigger push notification
-
+                    if(localUsers.size()>0) {
+                        gcmHelper.pushNotifications(localUsers);
+                    } else {
+                        System.out.println("No users in that area.");
+                    }
                 }
             }
 

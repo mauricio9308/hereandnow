@@ -8,6 +8,14 @@ import java.awt.geom.Point2D;
 public class Location {
     private Double lat;
     private Double lng;
+
+    public Point2D getPoint() {
+        if(point==null){
+            setThePonintLocation();
+        }
+        return point;
+    }
+
     private Point2D point;
 
     public String getGeohash() {
@@ -16,16 +24,21 @@ public class Location {
 
     private String geohash;
 
-    final private Double DEFAULT_THREASHOLD = 1D;
+    final private Double DEFAULT_THREASHOLD = 10D;
 
     Location(){}
 
     public Location(Double lat, Double lng, String geohash) {
         this.lat = lat;
         this.lng = lng;
-        this.point = new Point2D.Double(lat,lng);
+
+        setThePonintLocation();
 
         this.geohash = geohash;
+    }
+
+    private void setThePonintLocation() {
+        this.point = new Point2D.Double(lat,lng);
     }
 
     public Double getLat() {
@@ -42,9 +55,10 @@ public class Location {
         Double y = otherLocation.getLng();
         Point2D otherCoordinate =  new Point2D.Double(x,y);
 
-        Double distance = point.distance(otherCoordinate);
+        Point2D thePoint = getPoint();
+        Double distance = thePoint.distance(otherCoordinate);
         if(distance < DEFAULT_THREASHOLD){
-            System.out.println("Location is close.");
+            System.out.println("Location is close. Distance is: " + distance);
             System.out.println("Location 1: " + lat + ":" + lng);
             System.out.println("Location 2: " + x + ":" + y);
             return true;
