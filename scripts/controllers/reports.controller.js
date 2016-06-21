@@ -48,7 +48,7 @@
          * Obtain the given report description
          * */
         vm.getReportDescription = function( report ){
-            return ( report.description.length >= 50 ? report.substring(0, 50) + '...' : report.description );
+            return ( report.description.length >= 50 ? report.description.substring(0, 50) + '...' : report.description );
         };
 
         /**
