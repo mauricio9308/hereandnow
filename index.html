@@ -139,15 +139,18 @@
 <!-- Setting the Firebase connection -->
 <script src="bower_components/firebase/firebase.js"></script>
 <script>
-  // Initialize Firebase
-  var config = {
-    apiKey: "AIzaSyAe56fymBclza-v-yGC_wiaSIptJlLB7mQ",
-    authDomain: "alertsystem-9f7a1.firebaseapp.com",
-    databaseURL: "https://alertsystem-9f7a1.firebaseio.com",
-    storageBucket: ""
-  };
-  // Setting the firebase configuration
-  firebase.initializeApp(config);
+    // Initialize Firebase
+    var config = {
+        apiKey: "AIzaSyAe56fymBclza-v-yGC_wiaSIptJlLB7mQ",
+        authDomain: "alertsystem-9f7a1.firebaseapp.com",
+        databaseURL: "https://alertsystem-9f7a1.firebaseio.com",
+        storageBucket: "alertsystem-9f7a1.appspot.com"
+    };
+
+    // Setting the firebase configuration
+    firebase.initializeApp(config);
+
+
 </script>
 
 <!-- JS dependencies  -->
@@ -161,6 +164,7 @@
 
 <!-- Angular related files -->
 <script src="scripts/app.js"></script>
+<script src="scripts/controllers/load.file.controller.js"></script>
 <script src="scripts/services/google.login.service.js"></script>
 <script src="scripts/services/level.colors.service.js"></script>
 <script src="scripts/services/notifications.service.js"></script>
