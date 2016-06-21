@@ -65,7 +65,8 @@
                         level: level,
                         location: {
                             lat: position.coords.latitude,
-                            lng: position.coords.longitude
+                            lng: position.coords.longitude,
+                            geohash: encodeGeoHash(position.coords.latitude, position.coords.longitude)
                         }
                     };
 
