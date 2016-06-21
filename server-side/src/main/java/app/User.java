@@ -9,15 +9,15 @@ public class User {
     private String displayName;
     private Location location;
     private String email;
-    private URL photoUrl;
-    private String subscriberId;
+    private URL photoURL;
+    private String subscriberID;
 
-    public User(String subscriberId, String displayName, Location location, String email, URL photoUrl) {
-        this.subscriberId = subscriberId;
+    public User(String subscriberID, String displayName, Location location, String email, URL photoURL) {
+        this.subscriberID = subscriberID;
         this.displayName = displayName;
         this.location = location;
         this.email = email;
-        this.photoUrl = photoUrl;
+        this.photoURL = photoURL;
     }
 
     public User() {}
@@ -34,11 +34,11 @@ public class User {
         return email;
     }
 
-    public URL getPhotoUrl() {
-        return photoUrl;
+    public URL getPhotoURL() {
+        return photoURL;
     }
 
-    public String getSubscriberId() {
-        return subscriberId;
+    public String getSubscriberID() {
+        return subscriberID;
     }
 }
